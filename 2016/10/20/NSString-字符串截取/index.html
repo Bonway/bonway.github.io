@@ -3,15 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>NSString 字符串截取 | ibonway</title>
+  <title>ibonway</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="NSString 字符串截取">
+  <meta name="description" content="title: NSString 字符串截取date: 2013-10-20 14:23:26
+###1.截取字符串
+*string = @&quot;ibonway&quot;;123``````string = [string substringToIndex:3];//截取掉下标3之前的字符串
+123//结果：截取的值为：ibo```string = [string substringFromIndex:2];">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ibonway">
 <meta property="og:url" content="http://yoursite.com/2016/10/20/NSString-字符串截取/index.html">
 <meta property="og:site_name" content="ibonway">
-<meta property="og:updated_time" content="2016-10-20T06:23:26.000Z">
+<meta property="og:description" content="title: NSString 字符串截取date: 2013-10-20 14:23:26
+###1.截取字符串
+*string = @&quot;ibonway&quot;;123``````string = [string substringToIndex:3];//截取掉下标3之前的字符串
+123//结果：截取的值为：ibo```string = [string substringFromIndex:2];">
+<meta property="og:updated_time" content="2016-10-20T07:15:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NSString 字符串截取">
+<meta name="twitter:title" content="ibonway">
+<meta name="twitter:description" content="title: NSString 字符串截取date: 2013-10-20 14:23:26
+###1.截取字符串
+*string = @&quot;ibonway&quot;;123``````string = [string substringToIndex:3];//截取掉下标3之前的字符串
+123//结果：截取的值为：ibo```string = [string substringFromIndex:2];">
   
     <link rel="alternate" href="/atom.xml" title="ibonway" type="application/atom+xml">
   
@@ -63,26 +75,26 @@
         <section id="main"><article id="post-NSString-字符串截取" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/10/20/NSString-字符串截取/" class="article-date">
-  <time datetime="2016-10-20T06:23:26.000Z" itemprop="datePublished">2016-10-20</time>
+  <time datetime="2016-10-20T07:15:25.000Z" itemprop="datePublished">2016-10-20</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      NSString 字符串截取
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <hr>
+<p>title: NSString 字符串截取<br>date: 2013-10-20 14:23:26<br><!--tags:--><br><!-------></p>
+<p>###1.截取字符串</p>
+<figure class="highlight plain"><figcaption><span>*string = @"ibonway";</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"></div><div class="line">```string = [string substringToIndex:3];//截取掉下标3之前的字符串</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//结果：截取的值为：ibo</div><div class="line"></div><div class="line">```string = [string substringFromIndex:2];//截取掉下标2之后的字符串</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">###2.匹配字符串</div><div class="line">```NSString*string = @&quot;ibonway&quot;;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>range = [string rangeOfString:@"w"];//匹配得到的下标```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```NSLog(@&quot;rang:%@&quot;,NSStringFromRange(range));```//结果：rang:&#123;4, 1&#125;</div><div class="line"></div><div class="line">```string = [string substringWithRange:range];//截取范围类的字符串</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">###3.分隔字符串</div><div class="line">```NSString *string = @&quot;ibonway&quot;;</div></pre></td></tr></table></figure>
+<p><code>NSArray *array = [string componentsSeparatedByString:@&quot;w&quot;]; //从字符A中分隔成2个元素的数组</code></p>
+<p><code>NSLog(@&quot;array:%@&quot;,array);</code>//结果：array:(ibon,ay)</p>
+
       
     </div>
     <footer class="article-footer">
@@ -135,7 +147,7 @@
       <ul>
         
           <li>
-            <a href="/2016/10/20/NSString-字符串截取/">NSString 字符串截取</a>
+            <a href="/2016/10/20/NSString-字符串截取/">(no title)</a>
           </li>
         
           <li>
