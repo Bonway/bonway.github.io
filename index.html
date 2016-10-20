@@ -48,9 +48,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -96,7 +96,54 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/20/hello-world/" data-id="ciui1htzt00007wiirktrcpaj" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/10/20/hello-world/" data-id="ciui3qrmm0001ewiipp5lz8ti" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iOS9之后 HTTP访问不了" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/06/24/iOS9之后 HTTP访问不了/" class="article-date">
+  <time datetime="2015-06-24T06:23:26.000Z" itemprop="datePublished">2015-06-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/24/iOS9之后 HTTP访问不了/">iOS9之后 HTTP访问不了</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!------->
+<p>今天升级 <i style="font-family:arial;color:#ff2837;font-size:15px;background-color:#ffe9ce">Xcode 7.0 bata</i> 发现网络访问失败。</p>
+<p>输出错误信息:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.</div></pre></td></tr></table></figure>
+<p>通过翻墙 Google 后，iOS9引入了新特性<code>App Transport Security (ATS)</code>。详情：App Transport Security (ATS)</p>
+<p>新特性要求App内访问的网络必须使用HTTPS协议。<br>但是现在公司的项目使用的是HTTP协议，使用私有加密方式保证数据安全。现在也不能马上改成HTTPS协议传输。</p>
+<h3 id="最终找到以下解决办法"><a href="#最终找到以下解决办法" class="headerlink" title="最终找到以下解决办法"></a>最终找到以下解决办法</h3><ol>
+<li>在<code>Info.plist</code>中添加 <code>NSAppTransportSecurity</code> 类型 <code>Dictionary</code>。</li>
+<li>在<code>NSAppTransportSecurity</code>下添加 <code>NSAllowsArbitraryLoads</code> 类型 <code>Boolean</code>,值设为<code>YES</code>。</li>
+</ol>
+<h3 id="如下图显示"><a href="#如下图显示" class="headerlink" title="如下图显示"></a>如下图显示</h3><p><img src="/img/iOS9之后HTTP访问不了_001.jpg" alt="“iOS9之后 HTTP访问不了_001”"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/06/24/iOS9之后 HTTP访问不了/" data-id="ciui3qrmp0002ewiiwtvbass5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -140,7 +187,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2013/10/20/NSString-字符串截取/" data-id="ciui1htzy00017wiizq4cjeno" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2013/10/20/NSString-字符串截取/" data-id="ciui3qrmi0000ewiicdnhtxm6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -167,7 +214,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li></ul>
     </div>
   </div>
 
@@ -175,12 +222,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
           <li>
             <a href="/2016/10/20/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/06/24/iOS9之后 HTTP访问不了/">iOS9之后 HTTP访问不了</a>
           </li>
         
           <li>
@@ -200,7 +251,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 ibonway<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
