@@ -3,14 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>ibonway</title>
+  <title>UIWebView与WKWebView(一) | ibonway</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ibonway">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="引言UIWebView 自 iOS2.0 就有，WKWebView 从 iOS8.0 才有，毫无疑问WKWebView将逐步取代笨重的UIWebView。通过简单的测试即可发现UIWebView占用过多内存以及加载时间过长，且内存峰值更是夸张。WKWebView网页加载速度也有提升，但是并不像内存那样提升那么多（之后将会用图片进行具体的认证）。下面列举一些其它的优势：
+
+更多的支持HTML5的特性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UIWebView与WKWebView(一)">
+<meta property="og:url" content="http://yoursite.com/2014/06/25/UIWebView与WKWebView-一/index.html">
 <meta property="og:site_name" content="ibonway">
+<meta property="og:description" content="引言UIWebView 自 iOS2.0 就有，WKWebView 从 iOS8.0 才有，毫无疑问WKWebView将逐步取代笨重的UIWebView。通过简单的测试即可发现UIWebView占用过多内存以及加载时间过长，且内存峰值更是夸张。WKWebView网页加载速度也有提升，但是并不像内存那样提升那么多（之后将会用图片进行具体的认证）。下面列举一些其它的优势：
+
+更多的支持HTML5的特性">
+<meta property="og:updated_time" content="2016-10-26T01:44:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ibonway">
+<meta name="twitter:title" content="UIWebView与WKWebView(一)">
+<meta name="twitter:description" content="引言UIWebView 自 iOS2.0 就有，WKWebView 从 iOS8.0 才有，毫无疑问WKWebView将逐步取代笨重的UIWebView。通过简单的测试即可发现UIWebView占用过多内存以及加载时间过长，且内存峰值更是夸张。WKWebView网页加载速度也有提升，但是并不像内存那样提升那么多（之后将会用图片进行具体的认证）。下面列举一些其它的优势：
+
+更多的支持HTML5的特性">
   
     <link rel="alternate" href="/atom.xml" title="ibonway" type="application/atom+xml">
   
@@ -59,56 +69,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-iOS9之后 HTTP访问不了" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/06/24/iOS9之后 HTTP访问不了/" class="article-date">
-  <time datetime="2015-06-24T06:23:26.000Z" itemprop="datePublished">2015-06-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/06/24/iOS9之后 HTTP访问不了/">iOS9之后 HTTP访问不了</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!------->
-<p>今天升级 <i style="font-family:arial;color:#ff2837;font-size:15px;background-color:#ffe9ce">Xcode 7.0 bata</i> 发现网络访问失败。</p>
-<p>输出错误信息:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.</div></pre></td></tr></table></figure>
-<p>通过翻墙 Google 后，iOS9引入了新特性<code>App Transport Security (ATS)</code>。详情：App Transport Security (ATS)</p>
-<p>新特性要求App内访问的网络必须使用HTTPS协议。<br>但是现在公司的项目使用的是HTTP协议，使用私有加密方式保证数据安全。现在也不能马上改成HTTPS协议传输。</p>
-<h3 id="最终找到以下解决办法"><a href="#最终找到以下解决办法" class="headerlink" title="最终找到以下解决办法"></a>最终找到以下解决办法</h3><ol>
-<li>在<code>Info.plist</code>中添加 <code>NSAppTransportSecurity</code> 类型 <code>Dictionary</code>。</li>
-<li>在<code>NSAppTransportSecurity</code>下添加 <code>NSAllowsArbitraryLoads</code> 类型 <code>Boolean</code>,值设为<code>YES</code>。</li>
-</ol>
-<h3 id="如下图显示"><a href="#如下图显示" class="headerlink" title="如下图显示"></a>如下图显示</h3><p><img src="/img/iOS9之后HTTP访问不了/iOS9之后HTTP访问不了_001.jpg" alt="“iOS9之后 HTTP访问不了_001”"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/06/24/iOS9之后 HTTP访问不了/" data-id="ciuq99dez00021biik6bigxk9" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-UIWebView与WKWebView-一" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-UIWebView与WKWebView-一" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/06/25/UIWebView与WKWebView-一/" class="article-date">
   <time datetime="2014-06-25T06:23:26.000Z" itemprop="datePublished">2014-06-25</time>
@@ -121,8 +82,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/06/25/UIWebView与WKWebView-一/">UIWebView与WKWebView(一)</a>
+    <h1 class="article-title" itemprop="name">
+      UIWebView与WKWebView(一)
     </h1>
   
 
@@ -181,54 +142,28 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-NSString-字符串截取" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/10/20/NSString-字符串截取/" class="article-date">
-  <time datetime="2013-10-20T06:23:26.000Z" itemprop="datePublished">2013-10-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2015/06/24/iOS9之后 HTTP访问不了/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          iOS9之后 HTTP访问不了
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/10/20/NSString-字符串截取/">NSString 字符串截取</a>
-    </h1>
   
+    <a href="/2013/10/20/NSString-字符串截取/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">NSString 字符串截取</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!--title: NSString 字符串截取 -->
-<!------->
-<h3 id="1-截取字符串"><a href="#1-截取字符串" class="headerlink" title="1.截取字符串"></a>1.截取字符串</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">NSString *string = @&quot;ibonway&quot;;</div><div class="line">string = [string substringToIndex:3];//截取掉下标3之前的字符串</div><div class="line">NSLog(@&quot;截取的值为：%@&quot;,string);</div><div class="line">string = [string substringFromIndex:2];//截取掉下标2之后的字符串</div><div class="line">NSLog(@&quot;截取的值为：%@&quot;,string);</div></pre></td></tr></table></figure>
-<p>//结果：截取的值为：ibo<br>//结果：截取的值为：onway</p>
-<h3 id="2-匹配字符串"><a href="#2-匹配字符串" class="headerlink" title="2.匹配字符串"></a>2.匹配字符串</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">NSString*string = @&quot;ibonway&quot;;</div><div class="line">NSRange range = [string rangeOfString:@&quot;w&quot;];//匹配得到的下标</div><div class="line">NSLog(@&quot;rang:%@&quot;,NSStringFromRange(range));</div><div class="line">string = [string substringWithRange:range];//截取范围类的字符串</div><div class="line">NSLog(@&quot;截取的值为：%@&quot;,string);</div></pre></td></tr></table></figure>
-<p>//结果：rang:{4, 1}<br>//结果：截取的值为：w</p>
-<h3 id="3-分隔字符串"><a href="#3-分隔字符串" class="headerlink" title="3.分隔字符串"></a>3.分隔字符串</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">NSString *string = @&quot;ibonway&quot;;</div><div class="line">NSArray *array = [string componentsSeparatedByString:@&quot;w&quot;]; //从字符A中分隔成2个元素的数组</div><div class="line">NSLog(@&quot;array:%@&quot;,array);</div></pre></td></tr></table></figure>
-<p>//结果：array:(ibon,ay)</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2013/10/20/NSString-字符串截取/" data-id="ciuq99dee00001biitm3vik2k" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
 
 </section>
         
