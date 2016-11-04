@@ -17,23 +17,23 @@
 1、IOS的APP结构：iOS应用程序使用模型-视图-控制器架构（Model-View-Controller）。
 这种模式将应用程序的数据和业务逻辑与数据的视觉呈现分离。
 这种架构是至关重要的创建应用程序，可以运行在不同的屏幕大小">
-<meta property="og:image" content="http://yoursite.com/img/iOSApp结构/iOSApp结构1.jpg">
-<meta property="og:image" content="http://yoursite.com/img/iOSApp结构/iOSApp结构2.jpg">
-<meta property="og:image" content="http://yoursite.com/img/iOSApp结构/iOSApp结构3.jpg">
-<meta property="og:image" content="http://yoursite.com/img/iOSApp结构/iOSApp结构8.jpg">
-<meta property="og:image" content="http://yoursite.com/img/iOSApp结构/iOSApp结构4.jpg">
-<meta property="og:image" content="http://yoursite.com/img/iOSApp结构/iOSApp结构5.jpg">
-<meta property="og:image" content="http://yoursite.com/img/iOSApp结构/iOSApp结构6.jpg">
-<meta property="og:image" content="http://yoursite.com/img/iOSApp结构/iOSApp结构7.jpg">
+<meta property="og:image" content="http://yoursite.com/img/iOSAppMain/iOSAPPMain1.jpg">
+<meta property="og:image" content="http://yoursite.com/img/iOSAPPMain/iOSAPPMain2.jpg">
+<meta property="og:image" content="http://yoursite.com/img/iOSAPPMain/iOSAPPMain3.jpg">
+<meta property="og:image" content="http://yoursite.com/img/iOSAPPMain/iOSAPPMain8.jpg">
+<meta property="og:image" content="http://yoursite.com/img/iOSAPPMain/iOSAPPMain4.jpg">
+<meta property="og:image" content="http://yoursite.com/img/iOSAPPMain/iOSAPPMain5.jpg">
+<meta property="og:image" content="http://yoursite.com/img/iOSAPPMain/iOSAPPMain6.jpg">
+<meta property="og:image" content="http://yoursite.com/img/iOSAPPMain/iOSAPPMain7.jpg">
 <meta property="og:image" content="http://yoursite.com/img/googleEmail.jpg">
-<meta property="og:updated_time" content="2016-11-04T07:24:12.000Z">
+<meta property="og:updated_time" content="2016-11-04T07:39:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS的APP结构、生命周期、main">
 <meta name="twitter:description" content="引言从 Android 转型从事 iOS 研发，发现很多东西都万变不离其中，这里根据的是自己的了解，做一个笔记（好记性不如烂笔头）。（本文章基于的文档是IOS 8.3）
 1、IOS的APP结构：iOS应用程序使用模型-视图-控制器架构（Model-View-Controller）。
 这种模式将应用程序的数据和业务逻辑与数据的视觉呈现分离。
 这种架构是至关重要的创建应用程序，可以运行在不同的屏幕大小">
-<meta name="twitter:image" content="http://yoursite.com/img/iOSApp结构/iOSApp结构1.jpg">
+<meta name="twitter:image" content="http://yoursite.com/img/iOSAppMain/iOSAPPMain1.jpg">
   
     <link rel="alternate" href="/atom.xml" title="ibonway" type="application/atom+xml">
   
@@ -71,9 +71,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -108,7 +108,7 @@
 <h3 id="1、IOS的APP结构："><a href="#1、IOS的APP结构：" class="headerlink" title="1、IOS的APP结构："></a>1、IOS的APP结构：</h3><p>iOS应用程序使用模型-视图-控制器架构（Model-View-Controller）。</p>
 <p>这种模式将应用程序的数据和业务逻辑与数据的视觉呈现分离。</p>
 <p>这种架构是至关重要的创建应用程序，可以运行在不同的屏幕大小的不同设备。</p>
-<p><img src="/img/iOSApp结构/iOSApp结构1.jpg" alt=""></p>
+<p><img src="/img/iOSAppMain/iOSAPPMain1.jpg" alt=""></p>
 <p>其实，苹果的document对其解释的非常清楚，并对相应的Object做了非常详细的解说。（以下是自己的理解，不是十分的完善，具体的请看苹果的官方文档）</p>
 <ul>
 <li>UIApplication object对象管理事件循环和其它高级应用程序的行为。它还报告了关键的应用程序转换和一些特殊的事件（如传入的推送通知）。</li>
@@ -118,16 +118,16 @@
 <li>UIWindow object一个UIWindow对象在屏幕上呈现一个或多个视图。Windows使用UIApplication对象事件传送给你的视图和视图控制器。</li>
 <li>View objects,control objects, and layer objects 视图和控件提供的可视化表示应用程序的内容。</li>
 </ul>
-<h3 id="2、在主循环中处理事件："><a href="#2、在主循环中处理事件：" class="headerlink" title="2、在主循环中处理事件："></a>2、在主循环中处理事件：</h3><p><img src="/img/iOSApp结构/iOSApp结构2.jpg" alt=""></p>
+<h3 id="2、在主循环中处理事件："><a href="#2、在主循环中处理事件：" class="headerlink" title="2、在主循环中处理事件："></a>2、在主循环中处理事件：</h3><p><img src="/img/iOSAPPMain/iOSAPPMain2.jpg" alt=""></p>
 <p>看图应该就可以了解，就不做多解释了。</p>
 <p>###3、IOS应用程序的执行状态：</p>
-<p><img src="/img/iOSApp结构/iOSApp结构3.jpg" alt=""></p>
+<p><img src="/img/iOSAPPMain/iOSAPPMain3.jpg" alt=""></p>
 <p><code>Not running（未运行）</code>程序没启动。</p>
 <p><code>Inactive（未激活）</code>程序在前台运行，不过没有接收到事件。在没有事件处理情况下程序通常停留在这个状态。</p>
 <p><code>Active（激活）</code>程序在前台运行而且接收到了事件。这也是前台的一个正常的模式。</p>
 <p><code>Backgroud（后台）</code>程序在后台而且能执行代码，大多数程序进入这个状态后会在在这个状态上停留一会。时间到之后会进入挂起状态(Suspended)。有的程序经过特殊的请求后可以长期处于Backgroud状态。</p>
 <p><code>Suspended（挂起）</code>程序在后台不能执行代码。系统会自动把程序变成这个状态而且不会发出通知。当挂起时，程序还是停留在内存中的，当系统内存低时，系统就把挂起的程序清除掉，为前台程序提供更多的内存。</p>
-<p><img src="/img/iOSApp结构/iOSApp结构8.jpg" alt=""></p>
+<p><img src="/img/iOSAPPMain/iOSAPPMain8.jpg" alt=""></p>
 <pre><code>//这个方法是你的应用程序在启动时执行代码的第一次机会。
 -(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     NSLog(@&quot;%s&quot;,__func__);
@@ -201,9 +201,9 @@ int main(int argc, char * argv[]) {
 <p>如果主要.main文件存在，就会在.main文件对象里寻找Application对象和连接它的delegate。此函数会根据principalClassName创建UIApplication对象，然后根据delegateClassName创建一个delegate对象，并将UIApplication对象中的delegate属性设置为delegate对象。 </p>
 <p>当你不想使用系统自带的storyboard.main时，可以在图中，将main删除掉(删除一处，另一处相对应的将自动删除)。</p>
 <ol>
-<li><p>info.plist<br><img src="/img/iOSApp结构/iOSApp结构4.jpg" alt=""></p>
+<li><p>info.plist<br><img src="/img/iOSAPPMain/iOSAPPMain4.jpg" alt=""></p>
 </li>
-<li><p><img src="/img/iOSApp结构/iOSApp结构5.jpg" alt=""><br>(Launching an app into the foreground)加载应用程序到前台<br><img src="/img/iOSApp结构/iOSApp结构6.jpg" alt=""><br>(Launching an app into the background)加载应用程序到后台<br><img src="/img/iOSApp结构/iOSApp结构7.jpg" alt=""></p>
+<li><p><img src="/img/iOSAPPMain/iOSAPPMain5.jpg" alt=""><br>(Launching an app into the foreground)加载应用程序到前台<br><img src="/img/iOSAPPMain/iOSAPPMain6.jpg" alt=""><br>(Launching an app into the background)加载应用程序到后台<br><img src="/img/iOSAPPMain/iOSAPPMain7.jpg" alt=""></p>
 </li>
 </ol>
 <p>参考：<a href="https://developer.apple.com/library/content/navigation/" target="_blank" rel="external">苹果官方文档</a></p>
@@ -212,7 +212,7 @@ int main(int argc, char * argv[]) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/02/25/IOS的APP结构、生命周期、main/" data-id="civ3gglgo0004r4iiz6ihs0mi" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2014/02/25/IOS的APP结构、生命周期、main/" data-id="civ3gglgo0004r4iiz6ihs0mi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -222,7 +222,7 @@ int main(int argc, char * argv[]) {
 <nav id="article-nav">
   
     <a href="/2014/06/25/UIWebView与WKWebView-一/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           UIWebView与WKWebView(一)
@@ -232,7 +232,7 @@ int main(int argc, char * argv[]) {
   
   
     <a href="/2013/11/04/iOS枚举的使用/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">iOS枚举的使用</div>
     </a>
   
@@ -265,7 +265,7 @@ int main(int argc, char * argv[]) {
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -302,7 +302,7 @@ int main(int argc, char * argv[]) {
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 ibonway<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
