@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS枚举的使用 | ibonway</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="引用枚举类型: enum,NS_ENUM,NS_OPTIONS 枚举值一般是4个字节的int值，在64位系统上是8个字节。
+在iOS6和Mac OS 10.8以后Apple引入了两个宏来重新定义这两个枚举类型，实际上是将enum定义和typedef合二为一，并且采用不同的宏来从代码角度来区分。
+NS_ENUM一般用来普通的相关枚举的操作。NS_OPTIONS一般用来定义位移相关操作的枚举值，我们可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS枚举的使用">
+<meta property="og:url" content="http://yoursite.com/2013/11/04/iOS枚举的使用/index.html">
+<meta property="og:site_name" content="ibonway">
+<meta property="og:description" content="引用枚举类型: enum,NS_ENUM,NS_OPTIONS 枚举值一般是4个字节的int值，在64位系统上是8个字节。
+在iOS6和Mac OS 10.8以后Apple引入了两个宏来重新定义这两个枚举类型，实际上是将enum定义和typedef合二为一，并且采用不同的宏来从代码角度来区分。
+NS_ENUM一般用来普通的相关枚举的操作。NS_OPTIONS一般用来定义位移相关操作的枚举值，我们可">
+<meta property="og:image" content="http://yoursite.com/img/googleEamil.jpg">
+<meta property="og:updated_time" content="2016-11-04T06:27:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS枚举的使用">
+<meta name="twitter:description" content="引用枚举类型: enum,NS_ENUM,NS_OPTIONS 枚举值一般是4个字节的int值，在64位系统上是8个字节。
+在iOS6和Mac OS 10.8以后Apple引入了两个宏来重新定义这两个枚举类型，实际上是将enum定义和typedef合二为一，并且采用不同的宏来从代码角度来区分。
+NS_ENUM一般用来普通的相关枚举的操作。NS_OPTIONS一般用来定义位移相关操作的枚举值，我们可">
+<meta name="twitter:image" content="http://yoursite.com/img/googleEamil.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="ibonway" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ibonway</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-iOS枚举的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/11/04/iOS枚举的使用/" class="article-date">
+  <time datetime="2013-11-04T05:08:18.000Z" itemprop="datePublished">2013-11-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS枚举的使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>枚举类型: <a style="font-family:arial;color:#ff2837;font-size:15px">enum,NS_ENUM,NS_OPTIONS</a> 枚举值一般是4个字节的int值，在64位系统上是8个字节。</p>
+<p>在iOS6和Mac OS 10.8以后Apple引入了两个宏来重新定义这两个枚举类型，实际上是将enum定义和typedef合二为一，并且采用不同的宏来从代码角度来区分。</p>
+<p>NS_ENUM一般用来普通的相关枚举的操作。NS_OPTIONS一般用来定义位移相关操作的枚举值，我们可以参考UIKit.Framework的头文件，可以看到大量的枚举定义。</p>
+<p>这两个宏的定义在Foundation.framework的NSObjCRuntime.h中：</p>
+<pre><code>#if (__cplusplus &amp;&amp; __cplusplus &gt;= 201103L &amp;&amp; (__has_extension(cxx_strong_enums) ||     __has_feature(objc_fixed_enum))) || (!__cplusplus &amp;&amp; __has_feature(objc_fixed_enum))  
+#define NS_ENUM(_type, _name) enum _name : _type _name; enum _name : _type  
+#if (__cplusplus)  
+#define NS_OPTIONS(_type, _name) _type _name; enum : _type  
+#else  
+#define NS_OPTIONS(_type, _name) enum _name : _type _name; enum _name : _type  
+#endif  
+#else  
+#define NS_ENUM(_type, _name) _type _name; enum  
+#define NS_OPTIONS(_type, _name) _type _name; enum  
+#endif 
+</code></pre><h4 id="example："><a href="#example：" class="headerlink" title="example："></a>example：</h4><pre><code>typedef NS_ENUM    (NSInteger, UITableViewCellSeparatorStyle) {
+    UITableViewCellSeparatorStyleNone,
+    UITableViewCellSeparatorStyleSingleLine,
+    UITableViewCellSeparatorStyleSingleLineEtched   // This separator style is only supported for grouped style table views currently
+}
+typedef NS_OPTIONS (NSUInteger, UITableViewCellStateMask) {
+    UITableViewCellStateDefaultMask                     = 0,
+    UITableViewCellStateShowingEditControlMask          = 1 &lt;&lt; 0,
+    UITableViewCellStateShowingDeleteConfirmationMask   = 1 &lt;&lt; 1
+};
+</code></pre><p>如果你有任何问题请随时联系我:<br><img src="/img/googleEamil.jpg" alt="Mou icon">     <a href="http://ibonway@gmail.com" target="_blank" rel="external">ibonway@gmail.com</a> </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2013/11/04/iOS枚举的使用/" data-id="civ3dm09w0003hpiizzvnba9j" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/06/25/UIWebView与WKWebView-一/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          UIWebView与WKWebView(一)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/10/20/NSString-字符串截取/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">NSString 字符串截取</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/06/24/iOS9之后 HTTP访问不了/">iOS9之后 HTTP访问不了</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/25/UIWebView与WKWebView-一/">UIWebView与WKWebView(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2013/11/04/iOS枚举的使用/">iOS枚举的使用</a>
+          </li>
+        
+          <li>
+            <a href="/2013/10/20/NSString-字符串截取/">NSString 字符串截取</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 ibonway<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
