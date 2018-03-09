@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="对于iPhone一张脸用了三年这件事，最开心的大概就是那些手机APP设计者，毕竟一个模板可以用三年以上，并且不用再为那些长短不一的屏幕去不断的更改自己的设计方案，简直是一劳永逸。
+但iPhone X的出现却打破了他们的平静，那朵小刘海不仅折磨疯了一大票强迫症患者，更是让程序员们抓耳挠腮。
+而现在距离iPhone X面世已经过去了两周，可以看到绝大多数我们常用的APP都已经针对异形屏完成了适配，但其">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iPhone-X主流APP适配情况">
+<meta property="og:url" content="http://yoursite.com/2017/09/20/iPhone-X主流APP适配情况/index.html">
+<meta property="og:site_name" content="Bonway">
+<meta property="og:description" content="对于iPhone一张脸用了三年这件事，最开心的大概就是那些手机APP设计者，毕竟一个模板可以用三年以上，并且不用再为那些长短不一的屏幕去不断的更改自己的设计方案，简直是一劳永逸。
+但iPhone X的出现却打破了他们的平静，那朵小刘海不仅折磨疯了一大票强迫症患者，更是让程序员们抓耳挠腮。
+而现在距离iPhone X面世已经过去了两周，可以看到绝大多数我们常用的APP都已经针对异形屏完成了适配，但其">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-28956611177c8451..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-52968333f9e22ba3..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-316fc2835fa0d046..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-4a846007aef653a6..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-4a25c8abcb2faa59..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-09c35e76851b4573..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-f02e0f7cfc978d86..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-86f3b3cd6554b293..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-c3aaa06c4bff6cb6..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-a535a1821194fdc2..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-eea41246a3e1db35..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-df34ed64d0ecc1b8..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-6b14441cdeabcb0a..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-a734a7da7d50c74c..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-4aa6a09f311f4d17..png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-86f3c0f891820fe7..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-d7d0b4ac91f3f805..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-03-08T10:12:57.543Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iPhone-X主流APP适配情况">
+<meta name="twitter:description" content="对于iPhone一张脸用了三年这件事，最开心的大概就是那些手机APP设计者，毕竟一个模板可以用三年以上，并且不用再为那些长短不一的屏幕去不断的更改自己的设计方案，简直是一劳永逸。
+但iPhone X的出现却打破了他们的平静，那朵小刘海不仅折磨疯了一大票强迫症患者，更是让程序员们抓耳挠腮。
+而现在距离iPhone X面世已经过去了两周，可以看到绝大多数我们常用的APP都已经针对异形屏完成了适配，但其">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/10991770-28956611177c8451..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/20/iPhone-X主流APP适配情况/"/>
+
+
+
+
+
+  <title>iPhone-X主流APP适配情况 | Bonway</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bonway</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/20/iPhone-X主流APP适配情况/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bonway">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bonway">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iPhone-X主流APP适配情况</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T14:23:26+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>对于iPhone一张脸用了三年这件事，最开心的大概就是那些手机APP设计者，毕竟一个模板可以用三年以上，并且不用再为那些长短不一的屏幕去不断的更改自己的设计方案，简直是一劳永逸。</p>
+<p>但iPhone X的出现却打破了他们的平静，那朵小刘海不仅折磨疯了一大票强迫症患者，更是让程序员们抓耳挠腮。</p>
+<p>而现在距离iPhone X面世已经过去了两周，可以看到绝大多数我们常用的APP都已经针对异形屏完成了适配，但其中有些新的设计好像也并没有那么走心。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-28956611177c8451..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.jpg" title="1511339974822459.jpg"></p>
+<p>bilibili：日语不过N1也敢看B站？</p>
+<p>就适配速度而言，B站绝对算得上是国内众APP中的第一梯队，在iPhone X发售后的第三天便完成了更新，但是现在两周时间过去，之前那些没解决的问题也依然还没解决。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-52968333f9e22ba3..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2.jpg" title="1511339987197633.jpg"></p>
+<p>bilibili的首页完完整整的填满了整个屏幕，但大概是为了能在标准排版下尽可能多的显示首页内容，顶端菜单栏的空间设计十分紧促，所有标签全都如胶似漆的与小刘海贴了个严丝合缝。</p>
+<p>如果说专栏标签可以通过左右滑动页面来进行切换的话，那么一旁的搜索键便几乎没有了可操作的空间，普通的点按手势几乎完全无法准确的开启搜索功能，多次尝试后才终于得以在极小的可识别空间内打开搜索栏。</p>
+<p><strong>而现在已经两周过去，B站依然没有对此进行修复，每次使用搜索功能都让我想到了之前小心翼翼的抠电阻屏按键的手感。</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-316fc2835fa0d046..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3.jpg" title="1511340013866653.jpg"></p>
+<p>而作为bilibili的主营业务，在引进类的原声动画播放时，<strong>却出现了自制字幕被Home Indicator，也就是屏幕下方的那根长条遮挡的现象，</strong>看来日语不过N1，英语没有专八简直没有办法在B站看原声剧了。</p>
+<p>其实这一问题理应非常容易解决，比如B站自行加入画面上下颠倒的功能，因为如果使用苹果自带的屏幕重力感应来翻转屏幕，那么下方那根长条也会跟随屏幕翻转而移动。</p>
+<p>或者像隔壁的优酷一样，将自制字幕设计到避开Home Indicator的位置。总之这是一个非常容易解决并且确实已经影响到了观看体验的问题，但是bilibili却并没有做出应对。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-4a846007aef653a6..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="4.jpg" title="1511340096285890.jpg"></p>
+<p>bilibili播放日番《阿松》</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-4a25c8abcb2faa59..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5.jpg" title="1511340108794404.jpg"></p>
+<p>优酷播放日番《阿松》</p>
+<p>《王者荣耀》：花钱，你也不会变更强</p>
+<p>《王者荣耀》对于iPhone X的适配速度并不算快，但它确实针对“小刘海”做出了很多设计上的改动，例如将好友栏以及道具购买按键向屏幕中心平移以避开异形屏的黑边。</p>
+<p>但本以为适配后iPhone X可以像Galaxy Note8一样获得相比其他手机更大的视野，结果企鹅明显没有想让你获得这一特权。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-09c35e76851b4573..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="6.jpg" title="1511340135137712.jpg"></p>
+<p>在《王者荣耀》的游戏战斗场景中<strong>，腾讯将屏幕两侧加入了渐变黑边，来遮挡多出的可显示面积，</strong>所以在进行游戏时相比iPhone 7Plus或者iPhone 8Plus这类手机，iPhone X不会获得更多的可视面积，花了更多的钱却没让我变更强，这真是太不符合腾讯的作风了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-f02e0f7cfc978d86..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="7.jpg" title="1511340156288787.jpg"></p>
+<p>同时大多数的侧边菜单栏都为避开屏幕“刘海”做了拉长处理，但仔细翻阅，还是能找到部分未能进行适配的菜单，不知道《王者荣耀》何时会进行修复。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-86f3b3cd6554b293..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="8.jpg" title="1511340168531053.jpg"></p>
+<p>《阴阳师》：那些消失的队友</p>
+<p>阴阳师的适配速度并不算快，它在iPhone X上市第三周周五的日常维护中才加入了对于异形屏的适配，作为一个对视野和侧边功能键没有太多需求的游戏，<strong>阴阳师其实也只需要简单的将显示面积拉大，占满整个屏幕即可。但在某些细节之处却能看到，阴阳师并没有做到尽善尽美。</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-c3aaa06c4bff6cb6..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="9.jpg" title="1511340186709068.jpg"></p>
+<p>比如在与世界服务器玩家组队时，左侧的队友栏被完全遮盖，但在一部分其他组队功能中，左侧的队友栏又会如同《王者荣耀》一样避开“刘海”，不知道网易是否遗漏了某部分需要进行改动的设计。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-a535a1821194fdc2..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Sb04f28c1-2be7-45f7-8f7f-3a9283b9d073.jpg" title="1511340236981504.jpg"></p>
+<p>Chrome：令人窒息的额头</p>
+<p>大部分APP为了适配iPhone X，都会选择直接将额头处留白，让手机的“刘海”自行填充留白处，而Google的Chorme浏览器也正是这么做了。</p>
+<p>但问题在于，当横置手机时，页面的额头却依然保留了下来，在屏幕顶端留下了大约1cm的空白，最令人发指的是它并不会随着网址输入栏的隐藏而消失。</p>
+<p>要知道原本在将屏幕横置后，页面的高度就不会特别理想，而Chrome的留白进一步压榨了可视面积，让页面的可显示内容进一步缩水，而隔壁的Firefox在这方面的处理就要更好一些。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-eea41246a3e1db35..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="11.jpg" title="1511340249992498.jpg"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-df34ed64d0ecc1b8..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="12.jpg" title="1511340260536131.jpg"></p>
+<p>Chrome横置页面打开网页</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-6b14441cdeabcb0a..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="13.jpg" title="1511340296333732.jpg"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-a734a7da7d50c74c..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="14.jpg" title="1511340308697616.jpg"></p>
+<p>Firefox横置页面打开网页</p>
+<p>支付宝：面部支付仍未加入</p>
+<p>支付宝对于iPhone X的适配速度还算令人满意，而且这样一个功能性APP，我大概每天只会用它来扫二维码，所以屏幕的适配与否并没对我的日常使用造成什么影响。</p>
+<p>但苹果手机家族中，iPhone X独有的Face ID已经过去了两周还未能应用在支付宝中，没有对比就没有伤害，隔壁主营网络通讯顺带做了支付功能的微信，几乎是第一时间便支持了面容支付。据说支付宝正在内测Face ID的应用支持，但不知何时才能上线呢？</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-4aa6a09f311f4d17..png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="15.png" title="1511340330476556.png"></p>
+<p>建设银行：泪流满面的更新速度</p>
+<p>建设银行APP的更新是令我始料未及的，作为曾经的iPhone6 Plus第一批次用户，建设银行用了一年多的时间才完成了对大屏iPhone手机的适配，所以此次对于新手机的支持速度简直让人泪流满面。</p>
+<p>不过在新版建设银行APP中，虽然没有对我的使用造成什么困扰，但APP首页顶端怎么看都像是把小屏版本界面加了同色调的额头而已，底部处理则更为直接，看上去如同未进行适配后直接嵌入的设计。</p>
+<p>但在其他部分界面的设计下，却又让我确确实实的感受到我是在使用一台没有下巴的iPhone X，使用体验十分多变。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-86f3c0f891820fe7..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="15.jpg" title="1511340371842310.jpg"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-d7d0b4ac91f3f805..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="16.jpg" title="1511340387464090.jpg"></p>
+<p>不过无论如何我还是要给建设银行点个赞，因为它是目前与某神秘组织相关的APP中，唯一一个完成对iPhone X适配的。隔壁的工、农、商三行再加上12306，目前还都只是嵌入小屏幕模板的设计，按照他们一贯的更新速度，想要完成适配大概也要等到明年了。</p>
+<p>其实从各家APP的适配速度来看，能明显感受到iPhone X的小刘海确实给那些设计师和程序员们造成了不小的困扰，也许大部分APP只需要拉长额头并以相同的颜色进行顶部填充即可。</p>
+<p>但还有一部分APP却需要更细心的调整，甚至是定制化的改动，而在这部分调整中，难免会出现种种细节方面的问题。</p>
+<p>但现在距离iPhone X面世已经过去了超过两周时间，一部分APP出现的问题早已暴露，甚至还暴露的非常明显，不知道想要完美适配新手机，这些APP们还要让我们等多久呢？</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/20/iOS面试题：腾讯一、二、三面以及参考思路/" rel="next" title="iOS面试题：腾讯一、二、三面以及参考思路">
+                <i class="fa fa-chevron-left"></i> iOS面试题：腾讯一、二、三面以及参考思路
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Bonway" />
+          <p class="site-author-name" itemprop="name">Bonway</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bonway</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
