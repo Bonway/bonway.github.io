@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #f0f0f0; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS基础," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Bonway" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="人工智能、机器学习都已走进了我们的日常，尤其是愈演愈热的大数据更是跟我们的生活息息相关，做 人工智能、数据挖掘的人在其他人眼中感觉是很高大上的，总有一种遥不可及的感觉，在我司也经常会听到数据科学部的同事们提到 机器学习、数据挖掘 之类的词。但这些名词真的跟我们移动开发就没直接关系了吗？　　作为移动开发者来说，无时无刻不被这些名词狠狠地敲打着脆弱的内心。💢 💢 💢  何时才能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发迎来机器学习的春天---TensorFlow">
+<meta property="og:url" content="http://yoursite.com/2016/07/07/2016-07-07-iOSMachineLearning_TensorFlow/index.html">
+<meta property="og:site_name" content="Bonway">
+<meta property="og:description" content="人工智能、机器学习都已走进了我们的日常，尤其是愈演愈热的大数据更是跟我们的生活息息相关，做 人工智能、数据挖掘的人在其他人眼中感觉是很高大上的，总有一种遥不可及的感觉，在我司也经常会听到数据科学部的同事们提到 机器学习、数据挖掘 之类的词。但这些名词真的跟我们移动开发就没直接关系了吗？　　作为移动开发者来说，无时无刻不被这些名词狠狠地敲打着脆弱的内心。💢 💢 💢  何时才能">
+<meta property="og:image" content="http://yoursite.com/images/posts/tfimg/logo.jpg">
+<meta property="og:image" content="http://yoursite.com/images/posts/tfimg/image02.png">
+<meta property="og:image" content="http://yoursite.com/images/posts/tfimg/image01.png">
+<meta property="og:image" content="http://yoursite.com/images/posts/tfimg/wq.jpg">
+<meta property="og:updated_time" content="2018-03-14T09:44:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS开发迎来机器学习的春天---TensorFlow">
+<meta name="twitter:description" content="人工智能、机器学习都已走进了我们的日常，尤其是愈演愈热的大数据更是跟我们的生活息息相关，做 人工智能、数据挖掘的人在其他人眼中感觉是很高大上的，总有一种遥不可及的感觉，在我司也经常会听到数据科学部的同事们提到 机器学习、数据挖掘 之类的词。但这些名词真的跟我们移动开发就没直接关系了吗？　　作为移动开发者来说，无时无刻不被这些名词狠狠地敲打着脆弱的内心。💢 💢 💢  何时才能">
+<meta name="twitter:image" content="http://yoursite.com/images/posts/tfimg/logo.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/07/2016-07-07-iOSMachineLearning_TensorFlow/"/>
+
+
+
+
+
+  <title>iOS开发迎来机器学习的春天---TensorFlow | Bonway</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?da99a021876cb72e63bbf0f27d367af7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="http://linqipuzi.xyz"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bonway</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/07/2016-07-07-iOSMachineLearning_TensorFlow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bonway">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mine.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bonway">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">iOS开发迎来机器学习的春天---TensorFlow</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-07T00:00:00+08:00">
+                2016-07-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2016/07/07/2016-07-07-iOSMachineLearning_TensorFlow/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2016/07/07/2016-07-07-iOSMachineLearning_TensorFlow/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2016/07/07/2016-07-07-iOSMachineLearning_TensorFlow/" class="leancloud_visitors" data-flag-title="iOS开发迎来机器学习的春天---TensorFlow">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div align="center"><br>    <img src="/images/posts/tfimg/logo.jpg" height="300" width="500"><br></div> 
+
+<p>　　<code>人工智能</code>、<code>机器学习</code>都已走进了我们的日常，尤其是愈演愈热的大数据更是跟我们的生活息息相关，做 <code>人工智能</code>、<code>数据挖掘</code>的人在其他人眼中感觉是很高大上的，总有一种遥不可及的感觉，在我司也经常会听到数据科学部的同事们提到 <code>机器学习</code>、<code>数据挖掘</code> 之类的词。但这些名词真的跟我们移动开发就没直接关系了吗？<br>　　作为移动开发者来说，无时无刻不被这些名词狠狠地敲打着脆弱的内心。💢 💢 💢  何时才能够将<code>机器学习</code>、<code>深度学习</code>应用在移动端，敲响移动端<code>机器学习</code>工业化的大门呢？</p>
+<blockquote>
+<p>想象一下，某一天你身处一个完全陌生的环境，周围都是陌生的事物，而运行在iPhone的某个APP却对这个环境了如指掌，你要做的就是打开这个APP，输入你需要了解的事物，iPhone告诉你这个事物的信息，你也就没有了陌生事物了。世界就在眼前！</p>
+</blockquote>
+<p>如下图：</p>
+<div align="center"><br>    <img src="/images/posts/tfimg/image02.png" height="300" width="480"><br></div> 
+
+<p>上面物体的识别准确率还是蛮不错的，基本识别出了键盘（49%的概率）、鼠标（46%的概率）和水杯（24%的概率）。</p>
+<p>但是在某些事物的识别准确度方便却差强人意，比如下图：    </p>
+<div align="center"><br>　　<img src="/images/posts/tfimg/image01.png" height="300" width="320"><br></div><br>　　iPhone 6被识别成了iPod（59%的概率），而iPod的却是不怎么敢认（10%的概率）。想想最崩溃的估计是iPhone 6了，身价直接被降了好几个等级。<br><br><div align="center"><br>　　<img src="/images/posts/tfimg/wq.jpg" height="320" width="240"><br></div> 
+
+<p>　　上面的例子来自于TensorFlow官方iOSDemo，暂且不评述TensorFlow的识别准确度如何，毕竟它还年轻，但是仅凭其识别能力的体现，也给机器学习在移动端的运用带来了无限的可能。</p>
+<h3 id="一、TensorFlow（简称TF）"><a href="#一、TensorFlow（简称TF）" class="headerlink" title="一、TensorFlow（简称TF）"></a>一、TensorFlow（简称TF）</h3><p>　　去年，Google资深系统专家Jeff Dean在湾区机器学习大会上隆重介绍了其第二代深度学习系统<a href="http://www.tensorflow.org/" target="_blank" rel="external">TensorFlow</a>，一时间网络上针对TensorFlow的文章铺天盖地，<a href="http://www.leiphone.com/news/201511/UDLyNds2oSTwM2yZ.html" target="_blank" rel="external">揭秘TensorFlow：Google开源到底开的是什么？</a>、<a href="http://www.leiphone.com/news/201511/Voza1pFNQB4bzKdR.html" target="_blank" rel="external">Google开源TensorFlow系统，这背后都有什么门道？</a>、<a href="http://www.zhihu.com/question/37243838" target="_blank" rel="external">如何评价Google发布的第二代深度学习系统TensorFlow?</a>等等文章，TensorFlow的燎原之火一直在燃烧蔓延着，其<a href="https://github.com/tensorflow/tensorflow" target="_blank" rel="external">GitHub上的开源库</a>在此文撰写时，也已经被<code>star：27550</code>，<code>fork：11054</code>了。🔥 🔥 🔥 🔥 🔥 </p>
+<p>不负众望，Google一直宣称平台移植性非常好的TensorFlow，终于在2016年6月27日，发布0.9版本，宣布移动端支持。<a href="https://developers.googleblog.com/2016/06/tensorflow-v09-now-available-with.html" target="_blank" rel="external">TensorFlow v0.9 now available with improved mobile support</a>( 有墙💢 )，同时也给出了移动端的<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/ios_examples" target="_blank" rel="external">Demo</a>，对于代码为生的程序员，身处大数据处理为主导的<a href="http://www.talkingdata.com/" target="_blank" rel="external">TalkingData</a>，也小试身手了一把，下载TensorFlow源码，查看编译指南，开始跳坑、填坑之路，也成就了此篇拙文的产生。</p>
+<h3 id="二、从TensorFlow到iOS静态库"><a href="#二、从TensorFlow到iOS静态库" class="headerlink" title="二、从TensorFlow到iOS静态库"></a>二、从TensorFlow到iOS静态库</h3><p>对于iOS平台下如何使用TensorFlow，TensorFlow给出了详细的编译脚本命令，详情请查看<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/makefile" target="_blank" rel="external">官方文档的命令</a>。</p>
+<h5 id="第一步-工具准备"><a href="#第一步-工具准备" class="headerlink" title="第一步. 工具准备"></a>第一步. 工具准备</h5><p><code>工欲善其事必先利其器</code>，在开始编译工作之前，需要准备一些编译所必须的工具：</p>
+<ol>
+<li><a href="http://brew.sh/" target="_blank" rel="external">Homebrew</a>: Mac os x 上包管理工具，具体使用方法可参考<a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="external">Doc</a>。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</div></pre></td></tr></table></figure>
+<ol>
+<li>Homebrew安装好之后，依次安装三个辅助性编译工具：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ brew install libtool   </div><div class="line">$ brew install autoconf   </div><div class="line">$ brew install automake</div></pre></td></tr></table></figure>
+<blockquote>
+<p>三个工具的含义，请参考：<a href="https://en.wikipedia.org/wiki/GNU_Libtool" target="_blank" rel="external">https://en.wikipedia.org/wiki/GNU_Libtool</a></p>
+</blockquote>
+<h5 id="第二步-克隆TensorFlow"><a href="#第二步-克隆TensorFlow" class="headerlink" title="第二步. 克隆TensorFlow"></a>第二步. 克隆TensorFlow</h5><p>Google以<a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="external">Apache 2.0</a>开源协议将TensorFlow开源在<a href="https://github.com/tensorflow/tensorflow" target="_blank" rel="external">GitHub</a>上，我们可以直接使用TensorFlow源码。</p>
+<p>在任意你想存放TensorFlow源码的地方（建议不要放在桌面。^_^），clone项目。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/tensorflow/tensorflow</div></pre></td></tr></table></figure>
+<h5 id="第三步-编译前准备"><a href="#第三步-编译前准备" class="headerlink" title="第三步. 编译前准备"></a>第三步. 编译前准备</h5><p>　　在TensorFlow的<code>tensorflow/contrib/makefile/</code>目录下，有很多可使用的编译脚本，其中<code>build_all_ios.sh</code>脚本专门用来一键编译TensorFlow iOS静态库。虽然可以直接使用此脚本进行一键编译，但是因为有墙，某些依赖需要提前做处理。</p>
+<ol>
+<li><p>下载protobuf</p>
+<p> protobuf 是编译前唯一需要特殊处理的依赖库，<a href="https://github.com/google/protobuf/archive/master.zip" target="_blank" rel="external">点击下载</a>，下载protobuf之后，解压，备用。</p>
+</li>
+</ol>
+<ol>
+<li><p>下载googlemock</p>
+<p> 虽然protobuf编译脚本<code>autogen.sh</code>中的googlemock链接地址<code>https://googlemock.googlecode.com/files/gmock-1.7.0.zip</code>无法直接下载到，但是细心的人会发现，在浏览器中输入<code>https://googlemock.googlecode.com/</code>地址后，会跳转到<code>https://github.com/google/googlemock</code>地址，google在GiHub上的仓库地址。而GitHub上的仓库，我们可以直接的下载，克隆等。</p>
+<p> 我们直接在GitHub上下载googlemock(<a href="https://github.com/google/googlemock/archive/master.zip" target="_blank" rel="external">点击下载</a>)，下载完成后，修改压缩包名字为<code>gmock-1.7.0.zip</code>，修改后将此压缩包移至上一步protobuf文件夹目录下，备用。</p>
+</li>
+<li><p>修改下载依赖脚本，移除protobuf的下载</p>
+<p> 在<code>tensorflow/contrib/makefile/</code>目录下，<code>download_dependencies.sh</code>脚本用来下载相关依赖，打开此脚本文件，注释掉或者直接删掉<code>git clone https://github.com/google/protobuf.git ${DOWNLOADS_DIR}/protobuf</code>部分，目的是不让脚本去下载protobuf。</p>
+<p> 上面三步准备好后，接下来就进入静态库编译了。</p>
+</li>
+</ol>
+<h5 id="第四步-一键编译"><a href="#第四步-一键编译" class="headerlink" title="第四步. 一键编译"></a>第四步. 一键编译</h5><p>　　前面已经知道在TensorFlow文件夹<code>tensorflow/contrib/makefile/</code>目录下的<code>build_all_ios.sh</code>脚本是用来编译iOS静态库的脚本，因此可以直接执行此脚本，开始静态库的编译工作了。</p>
+<p>　　但是有一个问题大家可能会发现，由于编译TensorFlow需要用到protobuf，但是protobuf使我们自己手动下载的，该怎么让手动下载的protobuf能够直接让<code>build_all_ios.sh</code>脚本使用呢？</p>
+<p>　　答案是<code>复制、粘贴</code>。可能有些low，但是有效。执行命令 <code>build_all_ios.sh</code>之后，立即把之前手动下载的protobuf文件夹拷贝进<code>tensorflow/contrib/makefile/downloads</code>目录。（放心，你拷贝的速度会很快，不会影响编译的执行的。^_^） </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ build_all_ios.sh</div></pre></td></tr></table></figure>
+<p>　　一切准备就绪，接下来就是静静的等待编译完成了。在Mac编译的过程中，建议插上电源，最好不要让设备休眠断电，也最好不要去干别的东西，出去溜达一圈，回来后就看到战果了。</p>
+<p> 编译完成之后，会在<code>tensorflow/contrib/makefile/gen/</code>目录下看到编译的结果，关于这些静态库该如何使用，自己的项目如何应用，请参考<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/ios_examples" target="_blank" rel="external">TensorFlow iOS Examples</a>。</p>
+<h3 id="三、遇到的问题"><a href="#三、遇到的问题" class="headerlink" title="三、遇到的问题"></a>三、遇到的问题</h3><p>1、googlecode.com被墙了，需要翻墙！（目前测试挂了VPN也没用），这也是上面编译前准备为什么要那么做的原因。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl: (7) Failed to connect to googlemock.googlecode.com port 443: Operation timed out</div></pre></td></tr></table></figure>
+<p>解决： 请参考 『第三步. 编译前准备』。</p>
+<p>2、没有Xcode。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">xcrun: error: SDK &quot;iphoneos&quot; cannot be located</div><div class="line">xcrun: error: SDK &quot;iphoneos&quot; cannot be located</div><div class="line">xcrun: error: unable to lookup item &apos;PlatformPath&apos; in SDK &apos;iphoneos&apos;</div><div class="line">+ IPHONEOS_PLATFORM=</div></pre></td></tr></table></figure>
+<p>解决：安装Xcode，从上面报错的命令中可以看到，在编译静态库的过程中使用了<code>xcrun</code>，而此命令是xCode本身具有的能力。</p>
+<p>3、你的Xcode版本不是7.3或以后，或者你有多个Xcode，而默认的安装路径版本不是7.3或以后。</p>
+<p>```<br>error: Xcode 7.3.0 or later is required.</p>
+<ul>
+<li>exit 1<br>```/</li>
+</ul>
+<p>解决：更新Xcode至最新版本，并且保证默认路径下是最新/版本。</p>
+<p>如果Xcode是7.3，并且没有条件更新Xcode，你可以修改<code>tensorflow/contrib/makefile/compile_ios_tensorflow.sh</code> 里的<code>REQUIRED_XCODE_VERSION=7.3.0</code>，为<code>REQUIRED_XCODE_VERSION=7.3</code>。（这样修改，目前还不确定会不会带来一些其他影响，最好是升级你的Xcode）</p>
+<h3 id="四、参考链接"><a href="#四、参考链接" class="headerlink" title="四、参考链接"></a>四、参考链接</h3><ul>
+<li><a href="http://tensorfly.cn/" target="_blank" rel="external">TensorFlow 中文社区</a></li>
+<li><a href="https://www.tensorflow.org/mobile.html" target="_blank" rel="external">TensorFlow for Mobile</a></li>
+<li><a href="http://chenrudan.github.io/blog/2015/11/18/comparethreeopenlib.html" target="_blank" rel="external">Caffe、TensorFlow、MXnet三个开源库对比</a>   </li>
+<li><a href="http://weibo.com/p/1001603907610737775666" target="_blank" rel="external">如何评价Tensorflow和其它深度学习系统</a>    </li>
+<li><a href="http://www.algorithmdog.com/%E8%B0%81%E5%B0%86%E5%A4%BA%E5%8F%96%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B7%A5%E4%B8%9A%E6%A0%87%E5%87%86%E7%9A%84%E8%8D%A3%E8%80%80" target="_blank" rel="external">深度学习框架大战正在进行，谁将夺取“深度学习工业标准”的荣耀？</a>      </li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Bonway WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Bonway Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS基础/"  <i class="fa fa-tag"></i> iOS基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/02/2016-06-02-Develop_Tool/" rel="next" title="开发常用工具">
+                <i class="fa fa-chevron-left"></i> 开发常用工具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/20/UIWebView、WKWebView支持WebP图片显示/" rel="prev" title="UIWebView、WKWebView支持WebP图片显示">
+                UIWebView、WKWebView支持WebP图片显示 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/mine.png"
+               alt="Bonway" />
+          <p class="site-author-name" itemprop="name">Bonway</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/your-user-name" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="421817275@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="421817275" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、TensorFlow（简称TF）"><span class="nav-number">1.</span> <span class="nav-text">一、TensorFlow（简称TF）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、从TensorFlow到iOS静态库"><span class="nav-number">2.</span> <span class="nav-text">二、从TensorFlow到iOS静态库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一步-工具准备"><span class="nav-number">2.0.1.</span> <span class="nav-text">第一步. 工具准备</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二步-克隆TensorFlow"><span class="nav-number">2.0.2.</span> <span class="nav-text">第二步. 克隆TensorFlow</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三步-编译前准备"><span class="nav-number">2.0.3.</span> <span class="nav-text">第三步. 编译前准备</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第四步-一键编译"><span class="nav-number">2.0.4.</span> <span class="nav-text">第四步. 一键编译</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、遇到的问题"><span class="nav-number">3.</span> <span class="nav-text">三、遇到的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、参考链接"><span class="nav-number">4.</span> <span class="nav-text">四、参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2018</span>
+  
+  <span class="author" itemprop="copyrightHolder">Bonway</span>
+</div>
+
+
+
+Powered by <a href="http://linqipuzi.xyz/" target="_blank">Bonway</a>
+·浙ICP备18006992号 <a href="http://linqipuzi.xyz/" target="_blank"></a>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共字</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytrMgNxf';
+      var conf = 'bc060e5ba4249731b1c8b8e92d032584';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("vSIGWaVuClR8KRBO8C13a5k0-gzGzoHsz", "snxTUFWhWzp3gYHYljaCIjAh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
+

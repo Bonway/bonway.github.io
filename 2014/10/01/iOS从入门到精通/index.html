@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #f0f0f0; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS基础," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Bonway" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="一、iPhone机型适配
+
+
+设备型号
+屏幕尺寸
+
+
+
+
+iPhone 4/4S
+320 * 480
+
+
+iPhone 5/5C/5S
+320 * 568
+
+
+iPhone 6/6S/7
+375 * 667
+
+
+iPhone 6Plus/6SPlus/7Plus
+414 * 736
+
+
+
+
+二、mian()函数的作用
+(1)创建了一个自动释放池。(2)调用UIApplicationMain()函">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS从入门到精通">
+<meta property="og:url" content="http://yoursite.com/2014/10/01/iOS从入门到精通/index.html">
+<meta property="og:site_name" content="Bonway">
+<meta property="og:description" content="一、iPhone机型适配
+
+
+设备型号
+屏幕尺寸
+
+
+
+
+iPhone 4/4S
+320 * 480
+
+
+iPhone 5/5C/5S
+320 * 568
+
+
+iPhone 6/6S/7
+375 * 667
+
+
+iPhone 6Plus/6SPlus/7Plus
+414 * 736
+
+
+
+
+二、mian()函数的作用
+(1)创建了一个自动释放池。(2)调用UIApplicationMain()函">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-e2c571b5a785fff6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-61e520c43a75a2d8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-98efe982f7bc4928.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-7769a9ada48c767e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-63daa539a1952616.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-cb2b13e73d730420.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-03-14T09:02:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS从入门到精通">
+<meta name="twitter:description" content="一、iPhone机型适配
+
+
+设备型号
+屏幕尺寸
+
+
+
+
+iPhone 4/4S
+320 * 480
+
+
+iPhone 5/5C/5S
+320 * 568
+
+
+iPhone 6/6S/7
+375 * 667
+
+
+iPhone 6Plus/6SPlus/7Plus
+414 * 736
+
+
+
+
+二、mian()函数的作用
+(1)创建了一个自动释放池。(2)调用UIApplicationMain()函">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/10991770-e2c571b5a785fff6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2014/10/01/iOS从入门到精通/"/>
+
+
+
+
+
+  <title>iOS从入门到精通 | Bonway</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?da99a021876cb72e63bbf0f27d367af7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="http://linqipuzi.xyz"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bonway</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/10/01/iOS从入门到精通/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bonway">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mine.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bonway">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">iOS从入门到精通</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-10-01T09:04:24+08:00">
+                2014-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2014/10/01/iOS从入门到精通/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2014/10/01/iOS从入门到精通/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2014/10/01/iOS从入门到精通/" class="leancloud_visitors" data-flag-title="iOS从入门到精通">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://upload-images.jianshu.io/upload_images/10991770-e2c571b5a785fff6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iOS从入门到精通"></p>
+<h4 id="一、iPhone机型适配"><a href="#一、iPhone机型适配" class="headerlink" title="一、iPhone机型适配"></a>一、iPhone机型适配</h4><table>
+<thead>
+<tr>
+<th>设备型号</th>
+<th>屏幕尺寸</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iPhone 4/4S</td>
+<td>320 * 480</td>
+</tr>
+<tr>
+<td>iPhone 5/5C/5S</td>
+<td>320 * 568</td>
+</tr>
+<tr>
+<td>iPhone 6/6S/7</td>
+<td>375 * 667</td>
+</tr>
+<tr>
+<td>iPhone 6Plus/6SPlus/7Plus</td>
+<td>414 * 736</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-61e520c43a75a2d8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="机型适配"></p>
+<h4 id="二、mian-函数的作用"><a href="#二、mian-函数的作用" class="headerlink" title="二、mian()函数的作用"></a>二、mian()函数的作用</h4><blockquote>
+<p>(1)创建了一个自动释放池。<br>(2)调用UIApplicationMain()函数。<br>(3)释放自动释放池。</p>
+</blockquote>
+<p>main.m文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#import &lt;UIKit/UIKit.h&gt;</div><div class="line">#import &quot;AppDelegate.h&quot;</div><div class="line"></div><div class="line">//整个APP程序的主函数,入口函数</div><div class="line">int main(int argc, char * argv[]) &#123;</div><div class="line">    //自动内存释放池</div><div class="line">    @autoreleasepool &#123;</div><div class="line">        //UIKit框架结构的启动函数</div><div class="line">        //参数1:  argc    启动时带有参数的个数</div><div class="line">        //参数2:  argv    参数列表</div><div class="line">        //参数3:  nil     要求传入一个主框架类类名,如果参数为nil系统会用默认的框架类作为主框架类名</div><div class="line">        //参数4:  主框架的代理类对象名字</div><div class="line">        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="三、iOS应用的生命周期"><a href="#三、iOS应用的生命周期" class="headerlink" title="三、iOS应用的生命周期"></a>三、iOS应用的生命周期</h4><blockquote>
+<p>iOS应用程序拥有的5种状态:<br>(1)Not running 应用还没启动或正在运行但是中途被系统停止<br>(2)Inactive 应用正在前台运行(不接收事件)<br>(3)Active 应用正在前台运行(接收事件)<br>(4)Background 应用处于后台运行(还在执行代码)<br>(5)Suspended 应用处于后台运行(停止执行代码)</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-98efe982f7bc4928.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iOS程序的生命周期"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#pragma         //////////生命周期有关函数//////////</div><div class="line">//应用将要进入非活动调用   (不接受消息或事件)</div><div class="line">- (void)applicationWillResignActive:(UIApplication *)application;</div><div class="line">//应用进入活动调用        (接收消息或事件)</div><div class="line">- (void)applicationDidBecomeActive:(UIApplication *)application;</div><div class="line">//应用进入后台调用        (设置后台继续运行)</div><div class="line">- (void)applicationDidEnterBackground:(UIApplication *)application;</div><div class="line">//应用将要进入前台调用    </div><div class="line">- (void)applicationWillEnterForeground:(UIApplication *)application;</div><div class="line">//应用将要退出调用        (保存数据,退出前清理)</div><div class="line">- (void)applicationWillTerminate:(UIApplication *)application;</div><div class="line">//应用被终止前调用        (内存清理,方式应用被终止)</div><div class="line">- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application;</div><div class="line">//应用载入后调用          </div><div class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;</div><div class="line">//应用打开URL时调用</div><div class="line">- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url;</div></pre></td></tr></table></figure>
+<h4 id="四、UIViewController生命周期"><a href="#四、UIViewController生命周期" class="headerlink" title="四、UIViewController生命周期"></a>四、UIViewController生命周期</h4><blockquote>
+<p>(1)第一次访问UIViewController的view时，view为nil，然后就会调用loadView方法创建view，通过懒加载的方式进行加载。<br>(2)重写loadView方法，可以根据重写loadView方法创建View。<br>(3)View创建完毕后会调用viewDidLoad方法进行界面元素的初始化。<br>(4)StoryBoard加载的是控制器及控制器View。<br>(5)XIB加载的仅仅是控制器View。</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-7769a9ada48c767e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ViewController生命周期"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#pragma         //////////生命周期有关函数//////////</div><div class="line">- (void)loadView;                           //加载视图资源并初始化视图(负责创建UIViewController的View)</div><div class="line">- (void)viewDidLoad;                         //视图加载完毕(只执行一次,界面初始化操作,往View上添加子视图)</div><div class="line">- (void)viewWillAppear:(BOOL)animated;     //视图将要显示</div><div class="line">- (void)viewDidAppear:(BOOL)animated;       //视图显示</div><div class="line">- (void)viewWillDisappear:(BOOL)animated;   //视图将要消失</div><div class="line">- (void)viewDidDisappear:(BOOL)animated;     //视图消失</div></pre></td></tr></table></figure></p>
+<h4 id="五、Cocoa中的类"><a href="#五、Cocoa中的类" class="headerlink" title="五、Cocoa中的类"></a>五、Cocoa中的类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#pragma -核心类</div><div class="line">NSObject                //根类           (所有类的根类,定义了所有类共有的方法,如alloc,init)</div><div class="line">UIApplication          //应用程序类    (应用运行期间的控制和协作工作)  </div><div class="line">[UIApplication sharedApplication];     //获取应用程序实例</div><div class="line">UIWindow                //窗口类         (管理和显示视图的容器)</div><div class="line">UIView                //视图类       (管理矩形区域内的所有屏幕显示)</div><div class="line">#pragma -响应者链:</div><div class="line">UIResponder          //响应者类     (接收屏幕上的触摸事件)</div><div class="line">    - (void)touchesBegan: withEvent:;       //触摸开始</div><div class="line">    - (void)touchesMoved: withEvent:;       //触摸移动</div><div class="line">    - (void)touchesEnded: withEvent:;       //触摸结束</div><div class="line">    - (void)touchesCancelled: withEvent:;   //触摸取消</div><div class="line">UIControl               //控件类       (根据触摸事件触发操作)</div><div class="line">UIViewController         //视图控制器类   (管理视图的内容)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#pragma -数据类型类</div><div class="line">NSString/NSMutableString                //字符串</div><div class="line">NSArray/NSMutableArray                //数组</div><div class="line">NSDictionary/NSMutableDictionary        //字典</div><div class="line">NSNumber/NSDecimalNumber                //数字</div><div class="line">NSDate                                //日期</div><div class="line">NSURL                                  //url</div><div class="line">NSData                                //二进制</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">#pragma -UI界面类</div><div class="line">UILabel                              //标签</div><div class="line">UIButton                                //按钮</div><div class="line">UISlider                                //滑块</div><div class="line">UIStepper                              //步进</div><div class="line">UIImage/UIImageView                  //图片</div><div class="line">UISwitch                                //开关</div><div class="line">UISegmentedControl                    //分段</div><div class="line">UIWebView                              //网页</div><div class="line">UIScrollView                            //滚动</div><div class="line">UIPageControl                       //翻页</div><div class="line">UIProgressView                        //进度</div><div class="line">UIActivityIndicatorView              //活动指示器</div><div class="line">UITextField/UITextView                //文本框</div><div class="line">UIToolbar                              //工具栏</div><div class="line">UIDatePicker/UIPickerView              //选择器</div><div class="line">UIColor                              //颜色</div><div class="line">UITableView                          //列表</div><div class="line">UICollectionView                        //网格</div><div class="line">UIAlertController                       //选择控制器</div><div class="line">UIPopoverController                   //弹框控制器</div><div class="line">UINavigationController/UINavigationBar   //导航控制器</div><div class="line">UITabBarController/UITabBar             //选项控制器</div><div class="line">UISearchController/UISearchBar          //搜索控制器</div><div class="line">UIImagePickerController                 //图像选择控制器</div></pre></td></tr></table></figure>
+<h4 id="六、响应者链"><a href="#六、响应者链" class="headerlink" title="六、响应者链"></a>六、响应者链</h4><p><img src="http://upload-images.jianshu.io/upload_images/10991770-63daa539a1952616.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="响应者链"></p>
+<blockquote>
+<p>先向下找，再向上找的一个过程。<br>所有的iOS中关于的界面的类都直接或间接地继承与UIResponder。</p>
+</blockquote>
+<p><strong>(1)当用户点击某一个视图或者按钮的时候会首先响应application中UIWindow一层一层的向下查找，直到找到用户指定的view为止。</strong>(向下查找)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#pragma -查找用户点击的View</div><div class="line">- (nullable UIView *)hitTest:(CGPoint)point withEvent:(nullable UIEvent *)event;   </div><div class="line">- (BOOL)pointInside:(CGPoint)point withEvent:(nullable UIEvent *)event;</div></pre></td></tr></table></figure>
+<p><strong>(2)查看指定的View是否响应了点击事件，如果没有找它的nextResponder，再继续一层一层的向上查找，直到找到AppDelegate，再没有响应，则此点击事件被系统丢弃。</strong>(向上查找)</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-cb2b13e73d730420.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击查找View"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#pragma -查找用户点击的View响应事件</div><div class="line">- (nullable UIResponder*)nextResponder;</div></pre></td></tr></table></figure></p>
+<h4 id="七、空指针和野指针的区别"><a href="#七、空指针和野指针的区别" class="headerlink" title="七、空指针和野指针的区别"></a>七、空指针和野指针的区别</h4><blockquote>
+<p>空指针: 没有存储任何内存地址的指针就称为空指针(NULL指针)。空指针就是被赋值为0的指针，在没有被具体初始化之前，其值为0。</p>
+<p>野指针: 指向一个已删除的对象或未申请访问受限内存区域的指针。”野指针”不是NULL指针，是指向”垃圾”内存（不可用内存）的指针。野指针是非常危险的。</p>
+</blockquote>
+<h4 id="八、NSRunLoop"><a href="#八、NSRunLoop" class="headerlink" title="八、NSRunLoop"></a>八、NSRunLoop</h4><p>作用:</p>
+<ul>
+<li>有事情的时候当前NSRunLoop的线程工作,没有事情做让当前NSRunLoop的线程休眠。</li>
+<li>一直在循环检测,从线程开始到结束,检测同步事件。</li>
+<li>系统已经在每条线程中加入RunLoop,主线程默认启动,子线程默认关闭,保证主线程在运行起来后就处于一种等待状态,如果有接收到事件就会执行任务,否则就会处于休眠状态。</li>
+<li>每条线程都有唯一的一个RunLoop对象与之对应</li>
+<li>保持程序的持续运行</li>
+<li>处理APP中的各种事件(比如触摸,定时器,Selector)</li>
+<li>节省CPU资源,提高程序性能,该做事时做事,该休息时休息<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#pragma 系统默认注册运行模式RunLoop Mode(5个)</div><div class="line">NSDefaultRunLoopMode:           //默认的Mode,通常主线程的RunLoop是在这个Mode下运行。</div><div class="line">UITrackingRunLoopMode:          //界面跟踪Mode,当用户与界面交互的时候会在此Mode下运行。</div><div class="line">NSRunLoopCommonModes:           //这个不是一种真正的Mode,是一个占位用的Mode。</div><div class="line">UIInitializationRunLoopMode:    //程序启动时的Mode,启动完成后就不在此Mode下。</div><div class="line">GSEventReceiveRunLoopMode:      //接受系统事件的内部Mode,一般我们用不到。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#pragma RunLoop函数</div><div class="line">[NSRunLoop mainRunLoop];        //获取主线程RunLoop对象</div><div class="line">[NSRunLoop currentRunLoop];     //获取当前线程RunLoop对象</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#pragma RunLoop应用</div><div class="line">1）NSTimer</div><div class="line">2）ImageView显示：控制方法在特定的模式下可用</div><div class="line">3）PerformSelector</div><div class="line">4）常驻线程：在子线程中开启一个runloop</div><div class="line">5）自动释放池</div><div class="line">    第一次创建：进入runloop的时候</div><div class="line">    最后一次释放：runloop退出的时候</div><div class="line">    其它创建和释放：当runloop即将休眠的时候会把之前的自动释放池释放，然后重新创建一个新的释放池</div></pre></td></tr></table></figure>
+<p><strong>(1)NSTimer应用</strong></p>
+<blockquote>
+<p>NSTimer受RunLoop Mode影响</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//一、NSTimer默认添加到主线程中默认模式下工作----------------(NSDefaultRunLoopMode)</div><div class="line">    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(run) userInfo:nil repeats:YES];</div><div class="line"></div><div class="line">//二、NSTimer只有在默认模式下工作-----------------------(NSDefaultRunLoopMode)</div><div class="line">    NSTimer *timer1 = [NSTimer timerWithTimeInterval:2 target:self selector:@selector(run) userInfo:nil repeats:YES];</div><div class="line">    [[NSRunLoop mainRunLoop] addTimer:timer1 forMode:NSDefaultRunLoopMode];</div><div class="line"></div><div class="line">//三、NSTimer只有在拖拽UI界面模式下工作------------------(UITrackingRunLoopMode)</div><div class="line">    NSTimer *timer2 = [NSTimer timerWithTimeInterval:2 target:self selector:@selector(run) userInfo:nil repeats:YES];</div><div class="line">    [[NSRunLoop mainRunLoop] addTimer:timer2 forMode:UITrackingRunLoopMode];</div><div class="line"></div><div class="line">//四、NSTimer只有在NSRunLoopCommonModes模式下工作-------(标记NSDefaultRunLoopMode/UITrackingRunLoopMode两种模式)</div><div class="line">    NSTimer *timer3 = [NSTimer timerWithTimeInterval:2 target:self selector:@selector(run) userInfo:nil repeats:YES];</div><div class="line">    [[NSRunLoop mainRunLoop] addTimer:timer3 forMode:UITrackingRunLoopMode];</div></pre></td></tr></table></figure>
+<p>RunLoop与GCD</p>
+<blockquote>
+<p>CCD不受RunLoop Mode影响</p>
+</blockquote>
+<p><strong>(2)ImageView显示应用</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//只在NSDefaultRunLoopMode下执行(刷新图片,拖拽UI不会刷新图片)</div><div class="line">[_myImageView performSelector:@selector(setImage:) withObject:[UIImage imageNamed:@&quot;1.jpg&quot;] afterDelay:2.0 inModes:@[NSDefaultRunLoopMode]];</div></pre></td></tr></table></figure></p>
+<p><strong>(3)常驻线程应用</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">#import &quot;ViewController.h&quot;</div><div class="line">/*</div><div class="line">思路:为了保证线程不死，我们考虑在子线程中加入RunLoop，</div><div class="line">    但是由于RunLoop中没有没有源，就会自动退出RunLoop，</div><div class="line">    所以我们要为子线程添加一个RunLoop，</div><div class="line">    并且为这个RunLoop添加源(保证RunLoop不退出)</div><div class="line">*/</div><div class="line">@interface ViewController ()</div><div class="line">/** 线程对象 */</div><div class="line">@property (nonatomic, strong)NSThread *thread;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ViewController</div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    // 创建子线程</div><div class="line">    self.thread = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];</div><div class="line">    //启动子线程</div><div class="line">    [self.thread start];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)run &#123;</div><div class="line">    NSLog(@&quot;run--%@&quot;, [NSThread currentThread]); // 子线程</div><div class="line">    // 给子线程添加一个RunLoop，并且加入源</div><div class="line">    [[NSRunLoop currentRunLoop] addPort:[NSPort port] forMode:NSDefaultRunLoopMode];</div><div class="line">    // 启动RunLoop</div><div class="line">    [[NSRunLoop currentRunLoop] run];</div><div class="line">    NSLog(@&quot;------------&quot;); // RunLoop启动，这句没有执行的机会</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event &#123;</div><div class="line">    // 在子线程中调用test方法，如果子线程还在就能够调用成功</div><div class="line">    [self performSelector:@selector(test) onThread:self.thread withObject:nil waitUntilDone:YES modes:@[NSDefaultRunLoopMode]];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)test &#123;</div><div class="line">    NSLog(@&quot;test--%@&quot;, [NSThread currentThread]); // 子线程</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>[图片上传中…(image-d4be48-1520559929373-0)]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#pragma RunLoop监听活动枚举值</div><div class="line">/* Run Loop Observer Activities */</div><div class="line">typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) &#123;</div><div class="line">    kCFRunLoopEntry = (1UL &lt;&lt; 0),           //状态值:1,表示进入RunLoop</div><div class="line">    kCFRunLoopBeforeTimers = (1UL &lt;&lt; 1),    //状态值:2,表示即将处理NSTimer</div><div class="line">    kCFRunLoopBeforeSources = (1UL &lt;&lt; 2),   //状态值:4,表示即将处理Sources</div><div class="line">    kCFRunLoopBeforeWaiting = (1UL &lt;&lt; 5),   //状态值:32,表示即将休眠</div><div class="line">    kCFRunLoopAfterWaiting = (1UL &lt;&lt; 6),    //状态值:64,表示从休眠中唤醒</div><div class="line">    kCFRunLoopExit = (1UL &lt;&lt; 7),            //状态值:128,表示退出RunLoop</div><div class="line">    kCFRunLoopAllActivities = 0x0FFFFFFFU   //表示监听上面所有的状态</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>为主线程RunLoop添加观察者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">#pragma 1.创建一个监听对象</div><div class="line">    /**</div><div class="line">     *  参数1:    告诉系统如何给Observer对象分配存储空间</div><div class="line">     *  参数2:    需要监听的类型</div><div class="line">     *  参数3:    是否需要重复监听</div><div class="line">     *  参数4:    优先级</div><div class="line">     *  参数5:    监听到对应的状态之后的回调</div><div class="line">     */</div><div class="line">    CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopAllActivities, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) &#123;</div><div class="line"></div><div class="line">        switch (activity) &#123;</div><div class="line">            case kCFRunLoopEntry:</div><div class="line">                NSLog(@&quot;进入RunLoop&quot;);</div><div class="line">                break;</div><div class="line">            case kCFRunLoopBeforeTimers:</div><div class="line">                NSLog(@&quot;即将处理Timer&quot;);</div><div class="line">                break;</div><div class="line">            case kCFRunLoopBeforeSources:</div><div class="line">                NSLog(@&quot;即将处理Source&quot;);</div><div class="line">                break;</div><div class="line"></div><div class="line">            case kCFRunLoopBeforeWaiting:</div><div class="line">                NSLog(@&quot;即将休眠&quot;);</div><div class="line">                break;</div><div class="line">            case kCFRunLoopAfterWaiting:</div><div class="line">                NSLog(@&quot;从休眠中唤醒&quot;);</div><div class="line">                break;</div><div class="line">            case kCFRunLoopExit:</div><div class="line">                NSLog(@&quot;退出RunLoop&quot;);</div><div class="line">                break;</div><div class="line">            case kCFRunLoopAllActivities:</div><div class="line">                NSLog(@&quot;监听上面所有状态&quot;);</div><div class="line">                break;</div><div class="line">            default:</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;);</div><div class="line">#pragma 2.给主线程的RunLoop添加监听</div><div class="line">    /**</div><div class="line">     *  参数1:    需要监听的RunLoop对象</div><div class="line">     *  参数2:    给指定的RunLoop对象添加的监听对象</div><div class="line">     *  参数3:    在哪种模式下监听</div><div class="line">     */</div><div class="line">    CFRunLoopAddObserver(CFRunLoopGetCurrent(), observer, kCFRunLoopCommonModes);</div><div class="line">#pragma 3.释放Observer</div><div class="line">    CFRelease(observer);</div><div class="line">    //输出:       从休眠中唤醒</div><div class="line">    //输出:       即将处理Timer</div><div class="line">    //输出:       即将处理Source</div><div class="line">    //输出:       即将处理Timer</div><div class="line">    //输出:       即将处理Source</div><div class="line">    //输出:       即将休眠</div><div class="line">    //输出:       从休眠中唤醒</div><div class="line">    //输出:       即将处理Timer</div><div class="line">    //输出:       即将处理Source</div><div class="line">    //输出:       即将休眠</div><div class="line">    //.....</div></pre></td></tr></table></figure>
+<h4 id="九、沙盒机制"><a href="#九、沙盒机制" class="headerlink" title="九、沙盒机制"></a>九、沙盒机制</h4><p>iOS8.3以后苹果禁止了对沙盒路径的访问<br>每个应用都只能访问当前沙盒目录下面的文件</p>
+<blockquote>
+<ul>
+<li>app 应用文件<ul>
+<li>Documents 保存应用程序的数据文件。</li>
+</ul>
+</li>
+<li>Library 保存默认设置或其它状态信息。<ul>
+<li>Caches 保存缓存文件。</li>
+<li>Preferences 保存偏好设置文件,Plist文件。</li>
+</ul>
+</li>
+<li>tmp 保存各种临时文件。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">NSHomeDirectory()                                     //获取沙盒目录</div><div class="line">[[NSBundle mainBundle] bundlePath];                 //获取沙盒目录.app文件</div><div class="line">NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);</div><div class="line">NSString *DocumentsPath = [paths objectAtIndex:0];  //获取沙河目录Documents文件夹</div><div class="line">NSTemporaryDirectory()                              //获取沙河目录tmp文件夹</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<h4 id="十、iOS数据存储"><a href="#十、iOS数据存储" class="headerlink" title="十、iOS数据存储"></a>十、iOS数据存储</h4><p>(1)Plist文件<br>(2)SQLite数据库<br>(3)CoreData数据库</p>
+<h6 id="SQLite数据库增删改查"><a href="#SQLite数据库增删改查" class="headerlink" title="SQLite数据库增删改查"></a>SQLite数据库增删改查</h6><blockquote>
+<p>支持类型:integer real, text, blob<br>使用单引号来环绕文本值。如果是数值，请不要使用引号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">#pragma 创建表</div><div class="line">create table 表名 (字段1, 字段2, 字段3);</div><div class="line">create table if not exists (字段1, 字段2, 字段3);</div><div class="line">#pragma 插入</div><div class="line">insert into 表名 (字段1, 字段2, 字段3) values (值1, 值2, 值3);</div><div class="line">#pragma 更新</div><div class="line">update 表名 set 字段1 = 值1, 字段2 = 值2, 字段3 = 值3;</div><div class="line">update 表名 set 字段1 = 值2 where 字段1 = 值1;</div><div class="line">#pragma 删除</div><div class="line">delete from 表名</div><div class="line">#pragma 查询</div><div class="line">select * from 表名;                                      //所有查询</div><div class="line">select * from 表名 where 字段 = 值;                      //具体查询</div><div class="line">select * from 表名 where 字段 like 值;                    //模糊查询</div><div class="line">select * from 表名 order by 字段1 ASC, 字段2 DESC;         //排序查询(ASC升序, DESC降序)</div><div class="line">#pragma 统计</div><div class="line">select count(*) from 表名;</div><div class="line">select count(*) from 表名 where 字段 like 值;</div><div class="line">select max(字段) from 表名;</div><div class="line">select min(字段) from 表名;</div><div class="line">select avg(字段) from 表名;</div><div class="line">select sum(字段) from 表名;</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Bonway WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Bonway Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS基础/"  <i class="fa fa-tag"></i> iOS基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/08/25/IOS的APP结构、生命周期、main/" rel="next" title="IOS的APP结构、生命周期、main">
+                <i class="fa fa-chevron-left"></i> IOS的APP结构、生命周期、main
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/06/24/iOS9之后 HTTP访问不了/" rel="prev" title="iOS9之后 HTTP访问不了">
+                iOS9之后 HTTP访问不了 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/mine.png"
+               alt="Bonway" />
+          <p class="site-author-name" itemprop="name">Bonway</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/your-user-name" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="421817275@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="421817275" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、iPhone机型适配"><span class="nav-number">1.</span> <span class="nav-text">一、iPhone机型适配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、mian-函数的作用"><span class="nav-number">2.</span> <span class="nav-text">二、mian()函数的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、iOS应用的生命周期"><span class="nav-number">3.</span> <span class="nav-text">三、iOS应用的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、UIViewController生命周期"><span class="nav-number">4.</span> <span class="nav-text">四、UIViewController生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、Cocoa中的类"><span class="nav-number">5.</span> <span class="nav-text">五、Cocoa中的类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六、响应者链"><span class="nav-number">6.</span> <span class="nav-text">六、响应者链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七、空指针和野指针的区别"><span class="nav-number">7.</span> <span class="nav-text">七、空指针和野指针的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#八、NSRunLoop"><span class="nav-number">8.</span> <span class="nav-text">八、NSRunLoop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#九、沙盒机制"><span class="nav-number">9.</span> <span class="nav-text">九、沙盒机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#十、iOS数据存储"><span class="nav-number">10.</span> <span class="nav-text">十、iOS数据存储</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#SQLite数据库增删改查"><span class="nav-number">10.0.1.</span> <span class="nav-text">SQLite数据库增删改查</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2018</span>
+  
+  <span class="author" itemprop="copyrightHolder">Bonway</span>
+</div>
+
+
+
+Powered by <a href="http://linqipuzi.xyz/" target="_blank">Bonway</a>
+·浙ICP备18006992号 <a href="http://linqipuzi.xyz/" target="_blank"></a>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共字</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytrMgNxf';
+      var conf = 'bc060e5ba4249731b1c8b8e92d032584';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("vSIGWaVuClR8KRBO8C13a5k0-gzGzoHsz", "snxTUFWhWzp3gYHYljaCIjAh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
+

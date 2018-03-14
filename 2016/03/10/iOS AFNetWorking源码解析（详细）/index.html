@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #f0f0f0; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS源码解析," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Bonway" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="AFNetWorking的介绍(给没使用过的读者看的)AFNetWorking是目前iOS开发者网络库中最多的选择AFNetWorking是对NSURLConnection和NSURLSession的封装,iOS 9(AFN3.0版本)之后删除了NSURLConnection的API的所有支持,完全基于NSURLSession 的API.介绍下2.0版本跟3.0版本使用的区别2.0版本:使用 AF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS AFNetWorking源码解析（详细）">
+<meta property="og:url" content="http://yoursite.com/2016/03/10/iOS AFNetWorking源码解析（详细）/index.html">
+<meta property="og:site_name" content="Bonway">
+<meta property="og:description" content="AFNetWorking的介绍(给没使用过的读者看的)AFNetWorking是目前iOS开发者网络库中最多的选择AFNetWorking是对NSURLConnection和NSURLSession的封装,iOS 9(AFN3.0版本)之后删除了NSURLConnection的API的所有支持,完全基于NSURLSession 的API.介绍下2.0版本跟3.0版本使用的区别2.0版本:使用 AF">
+<meta property="og:updated_time" content="2018-03-14T08:51:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS AFNetWorking源码解析（详细）">
+<meta name="twitter:description" content="AFNetWorking的介绍(给没使用过的读者看的)AFNetWorking是目前iOS开发者网络库中最多的选择AFNetWorking是对NSURLConnection和NSURLSession的封装,iOS 9(AFN3.0版本)之后删除了NSURLConnection的API的所有支持,完全基于NSURLSession 的API.介绍下2.0版本跟3.0版本使用的区别2.0版本:使用 AF">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/03/10/iOS AFNetWorking源码解析（详细）/"/>
+
+
+
+
+
+  <title>iOS AFNetWorking源码解析（详细） | Bonway</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?da99a021876cb72e63bbf0f27d367af7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="http://linqipuzi.xyz"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bonway</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/10/iOS AFNetWorking源码解析（详细）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bonway">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mine.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bonway">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">iOS AFNetWorking源码解析（详细）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-10T18:02:22+08:00">
+                2016-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS进阶/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS进阶</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2016/03/10/iOS AFNetWorking源码解析（详细）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2016/03/10/iOS AFNetWorking源码解析（详细）/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2016/03/10/iOS AFNetWorking源码解析（详细）/" class="leancloud_visitors" data-flag-title="iOS AFNetWorking源码解析（详细）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>AFNetWorking的介绍(给没使用过的读者看的)<br>AFNetWorking是目前iOS开发者网络库中最多的选择<br>AFNetWorking是对NSURLConnection和NSURLSession的封装,iOS 9(AFN3.0版本)之后删除了NSURLConnection的API的所有支持,完全基于NSURLSession 的API.<br>介绍下2.0版本跟3.0版本使用的区别<br>2.0版本:<br>使用 AFHTTPRequestOperationManager这个网络管理者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];</div><div class="line">[manager GET:@&quot;需要请求的url&quot; parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) &#123;</div><div class="line">        NSLog(@&quot;请求成功&quot;);</div><div class="line">&#125; failure:^(AFHTTPRequestOperation *operation, NSError*error) &#123;</div><div class="line">        NSLog(@&quot;请求失败&quot;);</div><div class="line">&#125;];</div></pre></td></tr></table></figure></p>
+<p>3.0版本:<br>使用 AFHTTPSessionManager 这个网络管理者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">AFHTTPSessionManager *session = [AFHTTPSessionManager manager];</div><div class="line">[session GET:@&quot;需要请求的url&quot; parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) &#123;</div><div class="line">        NSLog(@&quot;请求成功&quot;);</div><div class="line">&#125; failure:^(NSURLSessionDataTask *task, NSError *error) &#123;</div><div class="line">        NSLog(@&quot;请求失败&quot;);        </div><div class="line">&#125;];</div></pre></td></tr></table></figure></p>
+<p>为什么会废弃NSURLConnection而使用NSURLSession这个网络类呢?<br>从iOS7之后,苹果就推出了NSURLSession , AFN跟随着苹果的脚步,加入了对其的支持<br>NSURLSession推出后苹果大力推广,但是其效果和NSURLConnection效果差不多,为什么NSURLConnection还会被废弃呢?<br>因为:2015年的WWDC大会,HTTP2.0时代的到来,(1.1版本是99年),HTTP2.0比之前的版本速度更快<br>iOS9(Xcode7)之后, NSURLSession开始正式支持HTTP2.0,所以相比速度快差不多4倍, NSURLSession将NSURLConnection甩开了距离<br>纯属个人理解<br>AFNetWorking的使用(直接上代码)<br>GET请求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">-(void)get</div><div class="line">&#123;</div><div class="line">    //1.创建会话管理者</div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    </div><div class="line">    //2.封装参数</div><div class="line">    NSDictionary *dict = @&#123;</div><div class="line">                           @&quot;username&quot;:@&quot;Lion&quot;,</div><div class="line">                           @&quot;pwd&quot;:@&quot;1314&quot;,</div><div class="line">                           @&quot;type&quot;:@&quot;JSON&quot;</div><div class="line">                           &#125;;</div><div class="line">    //3.发送GET请求</div><div class="line">    /*</div><div class="line">     第一个参数:请求路径(NSString)+ 不需要加参数</div><div class="line">     第二个参数:发送给服务器的参数数据</div><div class="line">     第三个参数:progress 进度回调</div><div class="line">     第四个参数:success  成功之后的回调(此处的成功或者是失败指的是整个请求)</div><div class="line">        task:请求任务</div><div class="line">        responseObject:注意!!!响应体信息---&gt;(json---&gt;oc))</div><div class="line">        task.response: 响应头信息</div><div class="line">     第五个参数:failure 失败之后的回调</div><div class="line">     */</div><div class="line">    [manager GET:@&quot;需要请求的URL&quot; parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) &#123;</div><div class="line">        NSLog(@&quot;success--%@--%@&quot;,[responseObject class],responseObject);</div><div class="line">        </div><div class="line">    &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123;</div><div class="line">        </div><div class="line">        NSLog(@&quot;failure--%@&quot;,error);</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>POST请求和GET请求一样,只需要换成POST请求方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[manager POST:@&quot;需要请求的URL&quot; parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) &#123;</div><div class="line">      NSLog(@&quot;success--%@--%@&quot;,[responseObject class],responseObject);</div><div class="line">      </div><div class="line">  &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123;</div><div class="line">      </div><div class="line">      NSLog(@&quot;failure--%@&quot;,error);</div><div class="line">  &#125;];</div></pre></td></tr></table></figure></p>
+<p>下载操作(不是离线下载,离线下载需要自己手动处理)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">-(void)download</div><div class="line">&#123;</div><div class="line">    //1.创建会话管理者</div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    </div><div class="line">    //2.确定请求路径</div><div class="line">    NSURL *url = [NSURL URLWithString:@&quot;需要请求的URL&quot;];</div><div class="line">    </div><div class="line">    //3.创建请求对象</div><div class="line">    NSURLRequest *request = [NSURLRequest requestWithURL:url];</div><div class="line">    </div><div class="line">    //4.发送网络请求下载文件</div><div class="line">    /*</div><div class="line">     第一个参数:请求对象</div><div class="line">     第二个参数:progress 进度回调</div><div class="line">                downloadProgress</div><div class="line">                @property int64_t totalUnitCount;</div><div class="line">                @property int64_t completedUnitCount;</div><div class="line">     第三个参数:destination 让我们告诉系统应该把文件存放到什么地方</div><div class="line">                内部自动的完成剪切处理</div><div class="line">     第四个参数: completionHandler 完成之后的回调</div><div class="line">                response 响应头信息</div><div class="line">                filePath  文件最终的存储路径</div><div class="line">                error 错误信息</div><div class="line">     */</div><div class="line">    [[manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) &#123;</div><div class="line">        </div><div class="line">        NSLog(@&quot;%f&quot;,1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount);</div><div class="line">        </div><div class="line">    &#125; destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) &#123;</div><div class="line">        </div><div class="line">        //拼接文件的全路径</div><div class="line">        NSString *fullpath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:response.suggestedFilename];</div><div class="line">        </div><div class="line">        NSLog(@&quot;fullpath == %@&quot;,fullpath);</div><div class="line">        return [NSURL fileURLWithPath:fullpath];</div><div class="line">        </div><div class="line">    &#125; completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) &#123;</div><div class="line"></div><div class="line">        NSLog(@&quot;%@&quot;,filePath);</div><div class="line">    &#125;] resume];</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上传操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div></pre></td><td class="code"><pre><div class="line">-(void)upload</div><div class="line">&#123;</div><div class="line">    //1.创建会话管理者</div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    </div><div class="line">    //2.发送请求上传文件</div><div class="line">    /*</div><div class="line">     第一个参数:请求路径(NSString)</div><div class="line">     第二个参数:非文件参数</div><div class="line">     第三个参数:constructingBodyWithBlock 拼接数据(告诉AFN要上传的数据是哪些)</div><div class="line">     第四个参数:progress 进度回调</div><div class="line">     第五个参数:success 成功回调 </div><div class="line">        responseObject:响应体</div><div class="line">     第六个参数:failure 失败的回调</div><div class="line">     */</div><div class="line">    [manager POST:@&quot;需要请求的URL&quot; parameters:nil constructingBodyWithBlock:^(id&lt;AFMultipartFormData&gt;  _Nonnull formData) &#123;</div><div class="line">        </div><div class="line">        NSData *data = [NSData dataWithContentsOfFile:@&quot;/Users/apple/Desktop/Snip20160409_148.png&quot;];</div><div class="line">        //拼接数据</div><div class="line">        /*</div><div class="line">         第一个参数:文件参数 (二进制数据)</div><div class="line">         第二个参数:参数名~file</div><div class="line">         第三个参数:该文件上传到服务器以什么名称来保存</div><div class="line">         第四个参数:</div><div class="line">         */</div><div class="line">        [formData appendPartWithFileData:data name:@&quot;file&quot; fileName:@&quot;123.png&quot; mimeType:@&quot;image/png&quot;];</div><div class="line">        </div><div class="line">    &#125; progress:^(NSProgress * _Nonnull uploadProgress) &#123;</div><div class="line">        NSLog(@&quot;%f&quot;,1.0 * uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);</div><div class="line">        </div><div class="line">    &#125; success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) &#123;</div><div class="line">        NSLog(@&quot;success--%@&quot;,responseObject);</div><div class="line">    &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123;</div><div class="line">        NSLog(@&quot;failure -- %@&quot;,error);</div><div class="line">    &#125;];</div><div class="line">&#125;</div><div class="line"></div><div class="line">NSURLSessionConfiguration配置信息</div><div class="line">作用:</div><div class="line">统一配置session的信息,每个session可以发送多个请求</div><div class="line">设置蜂窝网络,隐私信息,超时时间\</div><div class="line">@property (strong, nonatomic) NSURLSession *session;</div><div class="line">//将session设置为全局的属性,方便发送网络请求</div><div class="line">//在懒加载里面设置配置的信息,达到统一设置</div><div class="line">#pragma  makr - 懒加载</div><div class="line">-(NSURLSession *)session</div><div class="line">&#123;</div><div class="line">    if (_session == nil) &#123;</div><div class="line">        </div><div class="line">        //设置配置信息</div><div class="line">        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];</div><div class="line">        </div><div class="line">        //统一设置请求超时</div><div class="line">        config.timeoutIntervalForRequest = 15.0;</div><div class="line">        //设置是否允许蜂窝网络访问</div><div class="line">        config.allowsCellularAccess = YES;</div><div class="line">        </div><div class="line">        _session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue mainQueue]];</div><div class="line">    &#125;</div><div class="line">    return _session;</div><div class="line">&#125;</div><div class="line"></div><div class="line">AFNetWorking的序列化</div><div class="line">AFNetWorking默认是JSON解析(因为开发中百分之90都是JSON数据)</div><div class="line">默认情况:JSON AFJSONResponseSerializer</div><div class="line">XML:AFXMLParserResponseSerializer</div><div class="line">既不是XML也不是JSON:AFHTTPResponseSerializer</div><div class="line"></div><div class="line">JSON</div><div class="line">    //1.创建会话管理者</div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    </div><div class="line">    /*</div><div class="line">     1)afn内部默认已经完成了JSON解析工作</div><div class="line">        优点:方便</div><div class="line">        缺点:如果服务器返回的数据不是JSON会报错</div><div class="line">     */</div><div class="line">    NSDictionary *dict = @&#123;@&quot;type&quot;:@&quot;JSON&quot;&#125;;</div><div class="line">    //2.发请求</div><div class="line">    [manager GET:@&quot;需要请求的URL&quot; parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) &#123;</div><div class="line">        </div><div class="line">        NSLog(@&quot;%@--%@&quot;,[responseObject class],responseObject);</div><div class="line">        </div><div class="line">    &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123;</div><div class="line">        NSLog(@&quot;%@---&quot;,error);</div><div class="line">    &#125;];</div><div class="line">XML</div><div class="line">-(void)xml</div><div class="line">&#123;</div><div class="line">&lt;NSXMLParserDelegate&gt;代理协议</div><div class="line"></div><div class="line">    //1.创建会话管理者</div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    </div><div class="line">    //设置以XML的方式来解析数据</div><div class="line">    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];</div><div class="line">    </div><div class="line">    NSDictionary *dict = @&#123;@&quot;type&quot;:@&quot;XML&quot;&#125;;</div><div class="line">    //2.发请求</div><div class="line">    [manager GET:@&quot;需要请求的URL&quot; parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) &#123;</div><div class="line">        </div><div class="line">        NSLog(@&quot;%@--%@&quot;,[responseObject class],responseObject);</div><div class="line">        //1.创建解析器</div><div class="line">        NSXMLParser *parser = (NSXMLParser *)responseObject;</div><div class="line">        </div><div class="line">        //2.设置代理</div><div class="line">        parser.delegate = self;</div><div class="line">        </div><div class="line">        //3.开始解析</div><div class="line">        [parser parse];</div><div class="line">        </div><div class="line">    &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123;</div><div class="line">        NSLog(@&quot;%@---&quot;,error);</div><div class="line">    &#125;];</div><div class="line">&#125;</div><div class="line">OtherHttpData</div><div class="line">-(void)otherHttpData</div><div class="line">&#123;</div><div class="line">    //1.创建会话管理者</div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    </div><div class="line">    //设置不做处理</div><div class="line">    manager.responseSerializer = [AFHTTPResponseSerializer serializer];</div><div class="line">    </div><div class="line">    //2.发请求</div><div class="line">    [manager GET:@&quot;需要请求的URL&quot; parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) &#123;</div><div class="line">        </div><div class="line">        NSLog(@&quot;%@--%@&quot;,[responseObject class],responseObject);</div><div class="line">        </div><div class="line">    &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123;</div><div class="line">        NSLog(@&quot;%@---&quot;,error);</div><div class="line">    &#125;];</div><div class="line">&#125;</div><div class="line"></div><div class="line">#pragma mark NSXMLParserDelegate</div><div class="line">-(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary&lt;NSString *,NSString *&gt; *)attributeDict</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;%@--%@&quot;,elementName,attributeDict);</div><div class="line">&#125;</div><div class="line">检测网络的状态</div><div class="line">-(void)networkStatusChangeAFN</div><div class="line">&#123;</div><div class="line">    //1.获得一个网络状态监听管理者</div><div class="line">   AFNetworkReachabilityManager *manager =  [AFNetworkReachabilityManager sharedManager];</div><div class="line">    </div><div class="line">    //2.监听状态的改变(当网络状态改变的时候就会调用该block)</div><div class="line">    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) &#123;</div><div class="line">        </div><div class="line">        /*</div><div class="line">         AFNetworkReachabilityStatusUnknown          = -1,  未知</div><div class="line">         AFNetworkReachabilityStatusNotReachable     = 0,   没有网络</div><div class="line">         AFNetworkReachabilityStatusReachableViaWWAN = 1,    3G|4G</div><div class="line">         AFNetworkReachabilityStatusReachableViaWiFi = 2,   WIFI</div><div class="line">         */</div><div class="line">        switch (status) &#123;</div><div class="line">            case AFNetworkReachabilityStatusReachableViaWiFi:</div><div class="line">                NSLog(@&quot;wifi&quot;);</div><div class="line">                break;</div><div class="line">            case AFNetworkReachabilityStatusReachableViaWWAN:</div><div class="line">                NSLog(@&quot;3G|4G&quot;);</div><div class="line">                break;</div><div class="line">            case AFNetworkReachabilityStatusNotReachable:</div><div class="line">                NSLog(@&quot;没有网络&quot;);</div><div class="line">                break;</div><div class="line">            case AFNetworkReachabilityStatusUnknown:</div><div class="line">                NSLog(@&quot;未知&quot;);</div><div class="line">                break;</div><div class="line">                </div><div class="line">            default:</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line">    &#125;];</div><div class="line">    </div><div class="line">    //3.手动开启 开始监听</div><div class="line">    [manager startMonitoring];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>AFN使用技巧<br><code>1.在开发的时候可以创建一个工具类，继承自我们的AFN中的请求管理者，再控制器中真正发请求的代码使用自己封装的工具类。</code><br><code>2.这样做的优点是以后如果修改了底层依赖的框架，那么我们修改这个工具类就可以了，而不用再一个一个的去修改。</code><br><code>3.该工具类一般提供一个单例方法，在该方法中会设置一个基本的请求路径。</code><br><code>4.该方法通常还会提供对GET或POST请求的封装。</code><br><code>5.在外面的时候通过该工具类来发送请求</code><br><code>6.单例方法：+ (instancetype)shareNetworkTools{  
+  static XMGNetworkTools *instance;  
+  static dispatch_once_t onceToken;    
+dispatch_once(&amp;onceToken, ^{        
+// 注意: BaseURL中一定要以/结尾     
+  instance=[[selfalloc]initWithBaseURL:[NSURL URLWithString:@&quot;请求的URL&quot;]];    });    return instance;
+}</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Bonway WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Bonway Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS源码解析/"  <i class="fa fa-tag"></i> iOS源码解析</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/10/iOS开发-AFNetworking详解/" rel="next" title="iOS AFNetWorking源码解析">
+                <i class="fa fa-chevron-left"></i> iOS AFNetWorking源码解析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/10/iOS AFNetWorking源码解析（进阶）/" rel="prev" title="iOS AFNetWorking源码解析（进阶）">
+                iOS AFNetWorking源码解析（进阶） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/mine.png"
+               alt="Bonway" />
+          <p class="site-author-name" itemprop="name">Bonway</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/your-user-name" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="421817275@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="421817275" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2018</span>
+  
+  <span class="author" itemprop="copyrightHolder">Bonway</span>
+</div>
+
+
+
+Powered by <a href="http://linqipuzi.xyz/" target="_blank">Bonway</a>
+·浙ICP备18006992号 <a href="http://linqipuzi.xyz/" target="_blank"></a>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共字</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytrMgNxf';
+      var conf = 'bc060e5ba4249731b1c8b8e92d032584';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("vSIGWaVuClR8KRBO8C13a5k0-gzGzoHsz", "snxTUFWhWzp3gYHYljaCIjAh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
+

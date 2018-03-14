@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #f0f0f0; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS源码解析," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Bonway" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="TopicList
+
+一.FMDB 简介
+二.FMDB 使用说明
+三.FMDB 创建及使用方法
+四.FMDatabaseQueue的使用
+五.FMDB事务相关
+六.附: 相关参数说明
+七.附: iOS数据库操作中常见的 SQL 语句
+八.参考及引用文献
+九.本文MarkDown文件及Demo地址
+
+
+一.FMDB 简介
+SQLite是一个轻量级的关系型数据库,在使用的时候只需要加入libsql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS FMDB源码解析（详解）">
+<meta property="og:url" content="http://yoursite.com/2016/03/12/iOS FMDB源码解析（详解）/index.html">
+<meta property="og:site_name" content="Bonway">
+<meta property="og:description" content="TopicList
+
+一.FMDB 简介
+二.FMDB 使用说明
+三.FMDB 创建及使用方法
+四.FMDatabaseQueue的使用
+五.FMDB事务相关
+六.附: 相关参数说明
+七.附: iOS数据库操作中常见的 SQL 语句
+八.参考及引用文献
+九.本文MarkDown文件及Demo地址
+
+
+一.FMDB 简介
+SQLite是一个轻量级的关系型数据库,在使用的时候只需要加入libsql">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-2ae82be3d88a4ac5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-cb08142e400212b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/10991770-1803172f6b29bbdd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-03-14T08:58:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS FMDB源码解析（详解）">
+<meta name="twitter:description" content="TopicList
+
+一.FMDB 简介
+二.FMDB 使用说明
+三.FMDB 创建及使用方法
+四.FMDatabaseQueue的使用
+五.FMDB事务相关
+六.附: 相关参数说明
+七.附: iOS数据库操作中常见的 SQL 语句
+八.参考及引用文献
+九.本文MarkDown文件及Demo地址
+
+
+一.FMDB 简介
+SQLite是一个轻量级的关系型数据库,在使用的时候只需要加入libsql">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/10991770-2ae82be3d88a4ac5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/03/12/iOS FMDB源码解析（详解）/"/>
+
+
+
+
+
+  <title>iOS FMDB源码解析（详解） | Bonway</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?da99a021876cb72e63bbf0f27d367af7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="http://linqipuzi.xyz"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bonway</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/12/iOS FMDB源码解析（详解）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bonway">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mine.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bonway">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">iOS FMDB源码解析（详解）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-12T11:45:18+08:00">
+                2016-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS进阶/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS进阶</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2016/03/12/iOS FMDB源码解析（详解）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2016/03/12/iOS FMDB源码解析（详解）/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2016/03/12/iOS FMDB源码解析（详解）/" class="leancloud_visitors" data-flag-title="iOS FMDB源码解析（详解）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://upload-images.jianshu.io/upload_images/10991770-2ae82be3d88a4ac5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="fmdb.png"></p>
+<blockquote>
+<h4 id="TopicList"><a href="#TopicList" class="headerlink" title="TopicList"></a>TopicList</h4></blockquote>
+<ul>
+<li>一.FMDB 简介</li>
+<li>二.FMDB 使用说明</li>
+<li>三.FMDB 创建及使用方法</li>
+<li>四.FMDatabaseQueue的使用</li>
+<li>五.FMDB事务相关</li>
+<li>六.附: 相关参数说明</li>
+<li>七.附: iOS数据库操作中常见的 SQL 语句</li>
+<li>八.参考及引用文献</li>
+<li>九.本文MarkDown文件及Demo地址</li>
+</ul>
+<blockquote>
+<h5 id="一-FMDB-简介"><a href="#一-FMDB-简介" class="headerlink" title="一.FMDB 简介"></a>一.FMDB 简介</h5></blockquote>
+<p>SQLite是一个轻量级的关系型数据库,在使用的时候只需要加入<code>libsqlite3.tbd</code>的依赖并引入<code>sqlite3.h</code>头文件即可. 但是,原生的<code>SQLite API</code>在使用上相当的不友好. 因此, <a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2Fccgus%2Ffmdb" target="_blank" rel="external">FMDB</a> 用 OC 的方式对其C语言的API进行了封装,使用起来比原生的 API 优雅了很多,同时,相较于 Apple 自带的 CoreDada 框架,也更加灵活. 此外, FMDB 还提供了多线程安全的操作数据库的方法,能够有效地防止数据读取的混乱.<br>FMDB 的缺点: 由于其使用的是 OC 的语法封装,因此只能在 iOS 项目中使用,在跨平台操作的时候存在一定的局限性.</p>
+<blockquote>
+<h5 id="二-FMDB-使用说明"><a href="#二-FMDB-使用说明" class="headerlink" title="二.FMDB 使用说明"></a>二.FMDB 使用说明</h5></blockquote>
+<p>FMDB同时兼容ARC和非ARC工程，会自动根据工程配置来调整相关的内存管理代码。<br>FMDB 三个主要的常用类:<br><code>FMDatabase</code>: 代表一个 SQLite 数据库,用于执行 SQLite 语句;<br><code>FMResultSet</code>: 代表 FMDatabase 的一个 SQL 查询的结果集;<br><code>FMDatabaseQueue</code>: 如果你想在多个线程上执行数据库查询和更新的操作, 这个类会很有用.下面的”线程安全”部分,会重点介绍它;</p>
+<blockquote>
+<h5 id="三-FMDB-创建及使用方法"><a href="#三-FMDB-创建及使用方法" class="headerlink" title="三.FMDB 创建及使用方法"></a>三.FMDB 创建及使用方法</h5></blockquote>
+<ul>
+<li>首先需要将 FMDB 从 <a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2Fccgus%2Ffmdb" target="_blank" rel="external">Github</a> 上下载下来,然后将文件拖入工程中(支持 CocoaPods);</li>
+<li>在工程中添加<code>libsqlite3.tbd</code>依赖;</li>
+<li>引入头文件”FMDB.h”;</li>
+</ul>
+<h6 id="1-创建数据库"><a href="#1-创建数据库" class="headerlink" title="1.创建数据库"></a>1.创建数据库</h6><p>通过指定 SQLite 数据库文件的路径来创建一个 FMDatabase ,路径可以是以下几种方式中的任何一种:</p>
+<ul>
+<li>一个完整的文件路径,如果文件不存在,会自动创建<code>A file system path. The file does not have to exist on disk. If it does not exist, it is created for you.</code></li>
+<li>一个空字符串(@””),会自动在缓存区创建一个空的数据库, FMDatabase 连接关闭时,数据库会被自动删除<code>An empty string (@&quot;&quot;). An empty database is created at a temporary location. This database is deleted with the FMDatabase connection is closed.</code></li>
+<li>路径为 NULL ,会在内存中创建一个数据库,同样地, FMDatabase 连接关闭时,数据库会被自动删除<code>NULL. An in-memory database is created. This database will be destroyed with the FMDatabase connection is closed.</code></li>
+</ul>
+<p><strong>使用示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@&quot;UserInfo.db&quot;];</div><div class="line">FMDatabase *db = [FMDatabase databaseWithPath:filePath];</div></pre></td></tr></table></figure>
+<p><strong>注意</strong>: 这里创建了数据库,并不会打开数据库,打开数据库需要接下来的操作.</p>
+<h6 id="2-打开数据库"><a href="#2-打开数据库" class="headerlink" title="2.打开数据库"></a>2.打开数据库</h6><p>使用<code>open</code>语句打开数据库,打开成功返回 YES, 打开失败返回 NO, 示例如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (![db open]) &#123;</div><div class="line">   // error</div><div class="line">   db = nil;</div><div class="line">   return;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>说明</strong>:只有”打开”的数据库才能执行各种操作,资源不足或者权限问题都将会导致数据库打开/创建失败.<br><code>Before you can interact with the database, it must be opened. Opening fails if there are insufficient resources or permissions to open and/or create the database.</code></p>
+<h6 id="3-执行更新操作"><a href="#3-执行更新操作" class="headerlink" title="3.执行更新操作"></a>3.执行更新操作</h6><p>使用<code>-executeUpdate...</code>方法执行更新操作，该方法返回BOOL型, 成功返回 YES, 失败返回 NO.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (BOOL)executeUpdate:(NSString*)sql, ...</div><div class="line">- (BOOL)executeUpdateWithFormat:(NSString*)format, ...</div><div class="line">- (BOOL)executeUpdate:(NSString*)sql withArgumentsInArray:(NSArray *)arguments</div></pre></td></tr></table></figure>
+<p><strong>说明</strong>: 除了<code>SELECT</code>外的SQL操作,都被视为更新操作.包括<code>CREATE</code>, <code>UPDATE</code>, <code>INSERT</code>, <code>ALTER</code>, <code>COMMIT</code>, <code>BEGIN</code>, <code>DETACH</code>, <code>DELETE</code>, <code>DROP</code>, <code>END</code>, <code>EXPLAIN</code>, <code>VACUUM</code>, and <code>REPLACE</code>等.</p>
+<ul>
+<li>示例1:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[db executeUpdate:@&quot;CREATE TABLE IF NOT EXISTS &apos;UserInfoTable&apos; (Id integer NOT NULL primary key autoincrement,name text DEFAULT 0,age integer DEFAULT 0)&quot;];</div></pre></td></tr></table></figure>
+<ul>
+<li>示例2: <code>-executeUpdate:</code>使用标准的 SQL 语句,参数用<code>?</code>来占位,参数必须是对象类型,不能是<code>int</code>,<code>double</code>,<code>bool</code>等基本数据类型;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[db executeUpdate:@&quot;UPDATE UserInfoTable SET name = ? WHERE Id = ?&quot;, userInfo.name, @(userInfo.id).description];</div></pre></td></tr></table></figure>
+<ul>
+<li>示例3: <code>-executeUpdateWithFormat:</code>使用字符串的格式化构建 SQL 语句,参数用<code>%@</code>、<code>%d</code>等来占位.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[db executeUpdateWithFormat:@&quot;INSERT INTO UserInfoTable (name, age) values (%@,%d);&quot;, userInfo.name, userInfo.age];</div></pre></td></tr></table></figure>
+<ul>
+<li>示例4: <code>-executeUpdate:withArgumentsInArray:</code>也可以把对应的参数装到数组里面传进去,SQL语句中的参数用<code>?</code>代替.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSArray *sqlArr = @[userInfo.name, @(userInfo.age)];</div><div class="line">[db executeUpdate:@&quot;INSERT INTO UserInfoTable (name,age) values (?,?)&quot; withArgumentsInArray:sqlArr];</div></pre></td></tr></table></figure>
+<h6 id="4-执行查询操作"><a href="#4-执行查询操作" class="headerlink" title="4.执行查询操作"></a>4.执行查询操作</h6><p>使用 <code>-executeQuery...</code> 方法来执行查询操作,查询结果返回<code>FMResultSet</code>对象;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (FMResultSet *)executeQuery:(NSString*)sql, ...</div><div class="line">- (FMResultSet *)executeQueryWithFormat:(NSString*)format, ...</div><div class="line">- (FMResultSet *)executeQuery:(NSString *)sql withArgumentsInArray:(NSArray *)arguments</div></pre></td></tr></table></figure>
+<p>使用示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">FMResultSet *set = [db executeQuery:@&quot;SELECT * FROM UserInfoDTable&quot;];</div></pre></td></tr></table></figure>
+<p><strong>注意以下几点:</strong></p>
+<p>①为了遍历查询结果,需要使用 while() 语句遍历;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">while ([set next]) &#123;</div><div class="line">  // 从每条记录中获取值</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>②即使操作结果只有一行,也需要先调用 FMResultSet 的 next 方法.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">FMResultSet *res = [db executeQuery:@&quot;SELECT name(*) FROM UserInfoDTable&quot;];</div><div class="line">  while ([set next]) &#123;</div><div class="line">  NSString *name = [set stringForColumn:@&quot;name&quot;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>③通常情况下,不需要关闭 FMResultSet, 因为相关的数据库关闭时,FMResultSet 也会被自动关闭。 <code>Typically, there&#39;s no need to -close an FMResultSet yourself, since that happens when either the result set is deallocated, or the parent database is closed.</code></p>
+<p>④FMResultSet 提供了很多获取不同类型数据的方法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">// 获取下一个记录</div><div class="line">- (BOOL)next;</div><div class="line">// 获取记录有多少列</div><div class="line">- (int)columnCount;</div><div class="line">// 通过列名得到列序号，通过列序号得到列名</div><div class="line">- (int)columnIndexForName:(NSString *)columnName;</div><div class="line">- (NSString *)columnNameForIndex:(int)columnIdx;</div><div class="line">// 获取存储的整形值</div><div class="line">- (int)intForColumn:(NSString *)columnName;</div><div class="line">- (int)intForColumnIndex:(int)columnIdx;</div><div class="line">// 获取存储的长整形值</div><div class="line">- (long)longForColumn:(NSString *)columnName;</div><div class="line">- (long)longForColumnIndex:(int)columnIdx;</div><div class="line">// 获取存储的布尔值</div><div class="line">- (BOOL)boolForColumn:(NSString *)columnName;</div><div class="line">- (BOOL)boolForColumnIndex:(int)columnIdx;</div><div class="line">// 获取存储的浮点值</div><div class="line">- (double)doubleForColumn:(NSString *)columnName;</div><div class="line">- (double)doubleForColumnIndex:(int)columnIdx;</div><div class="line">// 获取存储的字符串</div><div class="line">- (NSString *)stringForColumn:(NSString *)columnName;</div><div class="line">- (NSString *)stringForColumnIndex:(int)columnIdx;</div><div class="line">// 获取存储的日期数据</div><div class="line">- (NSDate *)dateForColumn:(NSString *)columnName;</div><div class="line">- (NSDate *)dateForColumnIndex:(int)columnIdx;</div><div class="line">// 获取存储的二进制数据</div><div class="line">- (NSData *)dataForColumn:(NSString *)columnName;</div><div class="line">- (NSData *)dataForColumnIndex:(int)columnIdx;</div><div class="line">// 获取存储的UTF8格式的C语言字符串</div><div class="line">- (const unsigned cahr *)UTF8StringForColumnName:(NSString *)columnName;</div><div class="line">- (const unsigned cahr *)UTF8StringForColumnIndex:(int)columnIdx;</div><div class="line">// 获取存储的对象，只能是NSNumber、NSString、NSData、NSNull</div><div class="line">- (id)objectForColumnName:(NSString *)columnName;</div><div class="line">- (id)objectForColumnIndex:(int)columnIdx</div></pre></td></tr></table></figure>
+<p>⑤更多关于FMResultSet的使用方法参考 <a href="https://link.jianshu.com?t=http%3A%2F%2Fccgus.github.io%2Ffmdb%2Fhtml%2FClasses%2FFMResultSet.html%23%2F%2Fapi%2Fname%2FkvcMagic%3A" target="_blank" rel="external">FMResultSet Class Reference</a></p>
+<h6 id="5-关闭数据库"><a href="#5-关闭数据库" class="headerlink" title="5.关闭数据库"></a>5.关闭数据库</h6><p>当完成了数据库的查询以及更新操作,<strong>必须调用<code>close</code>语句关闭 FMDatabase 连接</strong>,释放SQLite 使用的资源.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[db close];</div></pre></td></tr></table></figure>
+<blockquote>
+<h5 id="四-FMDatabaseQueue的使用"><a href="#四-FMDatabaseQueue的使用" class="headerlink" title="四.FMDatabaseQueue的使用"></a>四.FMDatabaseQueue的使用</h5></blockquote>
+<p>FMDatabase 这个类是线程不安全的,如果在多个线程间共用一个 FMDatabase 对象,将会引起数据混乱等现象.<code>So don&#39;t instantiate a single FMDatabase object and use it across multiple threads.</code></p>
+<p>FMDB 提供了 FMDatabaseQueue 类来保证线程安全. FMDatabaseQueue 使用起来非常便捷,首先使用一个数据库文件地址来初始化 FMDatabaseQueue ,然后就可以将一个闭包(block)传入<code>inDatabase</code>方法中.在闭包中操作数据库,而不是直接参与 FMDatabase 的管理;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// 创建</div><div class="line">FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:aPath];</div><div class="line"></div><div class="line">// 使用</div><div class="line">[queue inDatabase:^(FMDatabase *db) &#123;</div><div class="line">[db executeUpdate:@&quot;INSERT INTO myTable VALUES (?)&quot;, @1];</div><div class="line">[db executeUpdate:@&quot;INSERT INTO myTable VALUES (?)&quot;, @2];</div><div class="line">[db executeUpdate:@&quot;INSERT INTO myTable VALUES (?)&quot;, @3];</div><div class="line"></div><div class="line">FMResultSet *rs = [db executeQuery:@&quot;select * from foo&quot;];</div><div class="line">while ([rs next]) &#123;</div><div class="line">   …</div><div class="line">  &#125;</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p>FMDatabaseQueue 中创建了一个GCD的串行队列，同一个FMDatabaseQueue 共享同一个FMDatabase对象，每一个SQL操作都是同步执行,因此在多线程环境下保障了数据的安全有序的访问。</p>
+<p>[图片上传失败…(image-817961-1520588431695)]</p>
+<blockquote>
+<h5 id="五-事务"><a href="#五-事务" class="headerlink" title="五.事务"></a>五.事务</h5></blockquote>
+<p><strong>事务</strong>，是指作为单个逻辑工作单元执行的一系列操作，要么完整地执行，要么完全地不执行。<br>FMDB 开启事务:开启事务对于数据库的作用是对数据的一系列操作,要么全部成功,要么全部失败,防止出现中间状态,以保证数据处理过程中始终处于正确和谐的状态.<br>FMDatabase使用事务的方法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">-(void)insertUserInfoWithDataArr:(NSArray *)dataArr&#123;</div><div class="line">    if (dataArr.count&lt;1) &#123;</div><div class="line">       return;</div><div class="line">    &#125;</div><div class="line">    FMDatabase *fmdb = self.fmdb;</div><div class="line">    [fmdb open];//开启数据库</div><div class="line">    [fmdb beginTransaction];//开启事务</div><div class="line">    BOOL isRollBack = NO;</div><div class="line">    @try &#123;</div><div class="line">      for (int i = 0; i&lt;dataArr.count; i++) &#123;</div><div class="line">        MsgCenterModel *model = dataArr[i];</div><div class="line">        NSArray *sqlDataArr = @[@(model.userId),model.name,model.age];</div><div class="line">        BOOL isSuccess = [fmdb executeUpdate:@&quot;INSERT INTO UserInfoTable (userId,name,age) values (?,?,?)&quot; withArgumentsInArray:sqlDataArr];</div><div class="line">        if (!isSuccess) &#123;</div><div class="line">           NSLog(@&quot;update Failure&quot;);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    @catch (NSException *exception) &#123;</div><div class="line">        isRollBack = YES;</div><div class="line">        [fmdb rollback];//事务回滚</div><div class="line">    &#125;</div><div class="line">    @finally &#123;</div><div class="line">        if (!isRollBack) &#123;</div><div class="line">        [fmdb commit];//提交事务</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    [fmdb close];//关闭数据库</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>FMDatabaseQueue使用事务的方法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//多线程事务 </div><div class="line">- (void)transactionByQueue &#123; </div><div class="line">  //开启事务</div><div class="line">  [self.queue inTransaction:^(FMDatabase *db, BOOL *rollback) &#123;</div><div class="line">  for (int i = 0; i&lt;500; i++) &#123; </div><div class="line">    NSNumber *num = @(i+1); </div><div class="line">    NSString *name = [[NSString alloc] initWithFormat:@&quot;student_%d&quot;,i]; </div><div class="line">    NSString *sex = (i%2==0)?@&quot;f&quot;:@&quot;m&quot;;</div><div class="line">    NSString *sql = @&quot;insert into mytable(num,name,sex) values(?,?,?);&quot;; </div><div class="line">    BOOL result = [db executeUpdate:sql,num,name,sex]; </div><div class="line">    if (!result) &#123; </div><div class="line">       //当最后*rollback的值为YES的时候，事务回退，如果最后*rollback为NO，事务提交</div><div class="line">       *rollback = YES;</div><div class="line">       return; </div><div class="line">      &#125; </div><div class="line">    &#125;</div><div class="line">  &#125;]; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="六-附相关参数说明"><a href="#六-附相关参数说明" class="headerlink" title="六.附相关参数说明:"></a>六.附相关参数说明:</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">NSInteger identifier = 42;</div><div class="line">NSString *name = @&quot;Liam O&apos;Flaherty (\&quot;the famous Irish author\&quot;)&quot;;</div><div class="line">NSDate *date = [NSDate date];</div><div class="line">NSString *comment = nil;</div><div class="line"></div><div class="line">BOOL success = [db executeUpdate:@&quot;INSERT INTO authors (identifier, name, date, comment) VALUES (?, ?, ?, ?)&quot;, @(identifier), name, date, comment ?: [NSNull null]];</div><div class="line">  if (!success) &#123;</div><div class="line">  NSLog(@&quot;error = %@&quot;, [db lastErrorMessage]);//打印最近一条错误信息</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>1.通常来讲,可以使用标准的 SQL 语句,用 ? 表示执行语句的参数,例如: <code>INSERT INTO myTable VALUES (?, ?, ?, ?)</code>;<br>2.我们可以调用 <code>executeUpdate:</code> 方法来将 ? 所指代的具体参数传进去,如示例语句;</p>
+<p>3.尤其值得注意的是,参数必须是<code>NSobject</code>的子类,所以像 <code>int</code> ,<code>double</code>, <code>bool</code> 等基本类型的数据,需要封装成对应的包装类才行,如示例中的 <code>identifier</code> 字段,需要通过 <code>@(identifier)</code> 或者 <code>[NSNumber numberWithInt:identifier]</code> 转换成 <code>NSNumber</code> 对象;</p>
+<p>4.SQL 中的 NULL 值需要以 [NSNull null] 类型传进去.例如实例中的<code>comment</code>字段,为空时我们可以通过 <code>comment ?: [NSNull null]</code> 语法进行处理;<code>Likewise, SQL NULL values should be inserted as [NSNull null]. For example, in the case of comment which might be nil (and is in this example), you can use the comment ?: [NSNull null] syntax, which will insert the string if comment is not nil, but will insert [NSNull null] if it is nil.</code>;</p>
+<p>5.<code>-execute*WithFormat:</code> 方法内部会将参数转换为合适的类型,以下修饰符都是可以使用的: %@, %c, %s, %d, %D, %i, %u, %U, %hi, %hu, %qi, %qu, %f, %g, %ld, %lu, %lld和 %llu. 使用不支持的占位符,将有可能引起崩溃或未定义的行为.如果需要在 SQL 语句中使用字符 <code>%</code> ,需要使用 <code>%%</code>;</p>
+<blockquote>
+<h5 id="七-附-iOS数据库操作中常见的-SQL-语句"><a href="#七-附-iOS数据库操作中常见的-SQL-语句" class="headerlink" title="七. 附 iOS数据库操作中常见的 SQL 语句"></a>七. 附 iOS数据库操作中常见的 SQL 语句</h5></blockquote>
+<p><strong><code>SQL(structured query language)</code></strong>语言简洁,语法简单,好学好用,它是一种结构化查询语言,<strong>值得注意的是</strong>,<strong>SQLite不区分大小写</strong>,但也有一些命令是大小写敏感的,比如 <code>GLOB</code> 和 <code>glob</code> 在 SQLite 的语句中有不同的含义.但这两个语句在 iOS 开发中一般用不到;</p>
+<p>要想在数据库中进行增删改查等相关操作,必须使用 SQL 语句,首先需要了解下 SQLite 存储数据的类型.</p>
+<p><strong>SQLite 存储数据的类型:</strong></p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NULL (null)</td>
+<td>值是一个 NULL 值</td>
+</tr>
+<tr>
+<td>INTEGER (integer)</td>
+<td>值是一个带符号的整数,根据值的大小存储在1、2、3、4、6 或 8 字节中</td>
+</tr>
+<tr>
+<td>REAL (real)</td>
+<td>值是一个浮点值,存储为 8 字节的 IEEE 浮点数字</td>
+</tr>
+<tr>
+<td>TEXT (text)</td>
+<td>值是一个文本字符串,使用数据库编码UTF-8、UTF-16BE 或 UTF-16LE）存储</td>
+</tr>
+<tr>
+<td>BLOB (blob)</td>
+<td>值是一个 blob 数据，完全根据它的输入存储</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>SQLite 没有单独的 Boolean 存储类。相反，布尔值被存储为整数 0(false)和 1(true)</td>
+</tr>
+</tbody>
+</table>
+<p>可以把 SQL 分为两个部分：<strong>数据操作语言 (DML) </strong>和 <strong>数据定义语言 (DDL)</strong>.<br>查询和更新指令构成了 SQL 的 DML 部分：</p>
+<ul>
+<li><strong>SELECT</strong>: 从数据库表中获取数据</li>
+<li><strong>UPDATE</strong>: 更新数据库表中的数据</li>
+<li><strong>DELETE</strong>: 从数据库表中删除数据</li>
+<li><strong>INSERT INTO</strong>: 向数据库表中插入数据</li>
+</ul>
+<p>SQL 的数据定义语言 (DDL) 部分使我们有能力创建或删除表格。我们也可以定义索引（键），规定表之间的链接，以及施加表间的约束.</p>
+<ul>
+<li><strong>CREATE DATABASE</strong>: 创建新数据库</li>
+<li><strong>CREATE TABLE</strong>: 创建新表</li>
+<li><strong>ALTER DATABASE</strong>: 修改数据库</li>
+<li><strong>ALTER TABLE</strong>: 变更（改变）数据库表</li>
+<li><strong>DROP TABLE</strong>: 删除表</li>
+<li><strong>CREATE INDEX</strong>: 创建索引（搜索键）</li>
+<li><strong>DROP INDEX</strong>: 删除索引</li>
+</ul>
+<p><strong>iOS中常用的 SQLite 语句:</strong></p>
+<h6 id="1-创建表格-CREATE-TABLE-语句用于创建数据库中的表"><a href="#1-创建表格-CREATE-TABLE-语句用于创建数据库中的表" class="headerlink" title="1.创建表格 (CREATE TABLE 语句用于创建数据库中的表)"></a>1.创建表格 (CREATE TABLE 语句用于创建数据库中的表)</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 语法: CREATE TABLE 表名称 (列名称1 数据类型,列名称2 数据类型,列名称3 数据类型,....)</div><div class="line">CREATE TABLE IF NOT EXISTS UserInfoDB (Id integer NOT NULL primary key autoincrement,myUserId integer DEFAULT 0,userId integer DEFAULT 0,realName text DEFAULT 0,age integer DEFAULT 0,avatarUrl text DEFAULT 0,content text DEFAULT 0,createTime integer DEFAULT 0,smallImgUrl text DEFAULT 0,messageType integer DEFAULT 0,readType integer DEFAULT 0,t1 text default 0,t2 text default 0,t3 text default 0,t4 text default 0)//t1,t2,t3,t4为预留字段;</div></pre></td></tr></table></figure>
+<h6 id="2-删除表格-DROP-TABLE-语句用于删除表"><a href="#2-删除表格-DROP-TABLE-语句用于删除表" class="headerlink" title="2.删除表格 (DROP TABLE 语句用于删除表)"></a>2.删除表格 (DROP TABLE 语句用于删除表)</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 表的结构、属性以及索引也会被删除</div><div class="line"></div><div class="line">// 语法: DROP TABLE 表名称</div><div class="line">DROP TABLE UserInfoDB;</div></pre></td></tr></table></figure>
+<h6 id="3-增-INSERT-INTO-语句用于向表格中插入新的行"><a href="#3-增-INSERT-INTO-语句用于向表格中插入新的行" class="headerlink" title="3.增 (INSERT INTO 语句用于向表格中插入新的行)"></a>3.增 (INSERT INTO 语句用于向表格中插入新的行)</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 语法1:  INSERT INTO 表名称 VALUES (值1, 值2,....) </div><div class="line">INSERT INTO UserInfoDB VALUES (?,?,?,?,?,?,?,?,?,?)</div><div class="line"></div><div class="line">// 语法2: INSERT INTO 表名称 (列1, 列2,...) VALUES (值1, 值2,....)</div><div class="line">INSERT OR REPLACE INTO UserInfoDB (myUserId,userId,realName,age,avatarUrl,content,createTime,smallImgUrl,messageType,readType) VALUES (?,?,?,?,?,?,?,?,?,?)</div><div class="line"></div><div class="line"> 注意：</div><div class="line"> 1.字段和值一定要对应，否则也会添加错误的数据进表里</div><div class="line"> 2.INSERT INTO 可以写成 INSERT OR REPLACE INTO</div><div class="line"> 3.更加推荐第二种语法</div></pre></td></tr></table></figure>
+<h6 id="4-删-DELETE-语句用于删除表中的行"><a href="#4-删-DELETE-语句用于删除表中的行" class="headerlink" title="4.删 (DELETE 语句用于删除表中的行)"></a>4.删 (DELETE 语句用于删除表中的行)</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 语法: DELETE FROM 表名称 WHERE 行名称</div><div class="line"></div><div class="line">// 删除某行</div><div class="line">DELETE FROM UserInfoDB WHERE Id = 1;</div><div class="line">// 删除所有行</div><div class="line">DELETE FROM UserInfoDB  或者 DELETE * FROM UserInfoDB</div></pre></td></tr></table></figure>
+<h6 id="5-改-UPDATE-语句用于修改表中的数据"><a href="#5-改-UPDATE-语句用于修改表中的数据" class="headerlink" title="5.改 (UPDATE 语句用于修改表中的数据)"></a>5.改 (UPDATE 语句用于修改表中的数据)</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 语法: UPDATE 表名称 SET 列名称 = 新值 WHERE 行名称 = 某值</div><div class="line">// 注意：如果不指定条件会更新所有数据</div><div class="line"></div><div class="line">// 更新某一行中的某一列数据</div><div class="line">UPDATE UserInfoDB SET realName = &apos;HarbingWang&apos; WHERE Id = 1</div><div class="line">// 更新某一行中的若干列</div><div class="line">UPDATE UserInfoDB SET realName = &apos;HarbingWang&apos;, age = 24, readType = 1 WHERE Id = 1</div></pre></td></tr></table></figure>
+<h6 id="6-查-SELECT-语句用于从表中查询并选取数据"><a href="#6-查-SELECT-语句用于从表中查询并选取数据" class="headerlink" title="6.查 (SELECT 语句用于从表中查询并选取数据)"></a>6.查 (SELECT 语句用于从表中查询并选取数据)</h6><p><strong>提示：星号（*）是选取所有列的快捷方式</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">// 查询结果被存储在一个结果表中,即 FMDataBaseSet结果集.</div><div class="line">// SQL 使用单引号来环绕文本值, 如果是数值,请不要使用引号.</div><div class="line"></div><div class="line">// 语法: SELECT 列名称 FROM 表名称 </div><div class="line">// 语法: SELECT * FROM 表名称</div><div class="line"></div><div class="line">// 查询指定字段</div><div class="line">SELECT name, age FROM UserInfoDB</div><div class="line"></div><div class="line">// 查询所有字段</div><div class="line">SELECT * FROM UserInfoDB</div><div class="line"></div><div class="line">// 查询记录总数</div><div class="line">SELECT COUNT(*) FROM UserInfoDB</div><div class="line"></div><div class="line">// 查询最大的 age</div><div class="line">SELECT MAX(age) FROM UserInfoDB</div><div class="line"></div><div class="line">// 查询最小的 age</div><div class="line">SELECT MIN(age) FROM UserInfoDB</div><div class="line"></div><div class="line">// 如需有条件地从表中选取数据，可将 WHERE 子句添加到 SELECT 语句</div><div class="line">// 查询 age &lt; 22 的记录的 name, age 字段</div><div class="line">SELECT name, age, FROM UserInfoDB WHERE age &lt; 22</div><div class="line"></div><div class="line">// 查询 age &lt; 22 的所有字段</div><div class="line">SELECT * FROM UserInfoDB WHERE age &lt; 22</div><div class="line"></div><div class="line">// 查询 age &lt; 22 的记录总数</div><div class="line">SELECT COUNT(*) FROM UserInfoDB WHERE realName = &apos;HarbingWang&apos;</div><div class="line"></div><div class="line">// 如需将表中选取的数据按一定的顺序排列，可将 ORDER BY 语句添加到 SELECT 语句</div><div class="line">// 查询所有记录的所有字段，根据 age 升序排序 (ORDER BY 语句默认按照升序对记录进行排序)</div><div class="line">SELECT * FROM UserInfoDB ORDER BY age</div><div class="line"></div><div class="line">// 查询所有记录的所有字段， 根据 age 降序排序 (按照降序对记录进行排序，可以使用 DESC 关键字)</div><div class="line">SELECT * FROM UserInfoDB ORDER BY age DESC</div><div class="line"></div><div class="line">// 使用多个字段排序，先按 age 降序排序，当 age 相同 时再根据 userId 升序排序</div><div class="line">SELECT * FROM UserInfoDB ORDER BY age DESC,userId ASC</div><div class="line"></div><div class="line">// 如需返回指定范围的记录,可以使用 LIMIT, LIMIT 常用于分页</div><div class="line">SELECT * FROM UserInfoDB LIMIT 5, 10  //5 表示跳过的5条, 10 表示获取10条</div><div class="line"></div><div class="line">// 取出年龄最大的3条记</div><div class="line">SELECT * FROM UserInfoDB ORDER BY age DESC LIMIT 3</div><div class="line"></div><div class="line">// 关键词 DISTINCT 用于返回唯一不同的值</div><div class="line">// 在表中，可能会包含重复值。这并不成问题，不过，有时您也许希望仅仅列出不同（distinct）的值。</div><div class="line">// 语法: SELECT DISTINCT 列名称 FROM 表名称</div><div class="line">SELECT DISTINCT Company FROM Orders</div><div class="line"></div><div class="line">// 查询最近一条数据(最新添加的)</div><div class="line">// 例1, 其中 localId 为自增长的主键,也可以是创建时间等.</div><div class="line">SELECT * FROM 表名 WHERE localId = (SELECT MAX(localId) FROM 表名)</div><div class="line">// 例2</div><div class="line">SELECT * FROM 表名 WHERE userId = 100095594 ORDER BY localId DESC LIMIT 1</div><div class="line"></div><div class="line">// SELECT DISTINCT 语句</div><div class="line">// 在表中，可能会包含重复值。这并不成问题，不过，有时您也许希望仅仅列出不同（distinct）的值。</div><div class="line">关键词 DISTINCT 用于返回唯一不同的值。</div><div class="line">// 用法: </div><div class="line">SELECT DISTINCT 列名称 FROM 表名称</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 查询 多条数据汇总,返回一个 result</div><div class="line">SELECT</div><div class="line">sum(num) as num,</div><div class="line">sum(totalActiveTime) as totalActiveTime,</div><div class="line">sum(totalCal) as totalCal,</div><div class="line">sum(totalDistances) as totalDistances,</div><div class="line">sum(totalStep) as totalStep</div><div class="line">FROM %@</div><div class="line">WHERE</div><div class="line">userId = %ld</div><div class="line">AND date = %ld</div></pre></td></tr></table></figure>
+<p><strong>下面的运算符可在 WHERE 子句中使用</strong></p>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=</td>
+<td>等于</td>
+</tr>
+<tr>
+<td>&lt;&gt;</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td>BETWEEN</td>
+<td>在某个范围内</td>
+</tr>
+<tr>
+<td>LIKE</td>
+<td>搜索某种模式</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h5 id="8-后续补充"><a href="#8-后续补充" class="headerlink" title="8. 后续补充"></a>8. 后续补充</h5></blockquote>
+<h6 id="1-表间关联查询语句"><a href="#1-表间关联查询语句" class="headerlink" title="1. 表间关联查询语句"></a>1. 表间关联查询语句</h6><p><img src="http://upload-images.jianshu.io/upload_images/10991770-cb08142e400212b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="表结构.png"></p>
+<p>情景: 需要通过 User 表的 id 等字段查询到 UserInfo 表的某些用户信息,那么我们可以这样操作<br>(其中 t1 表示 User 表, t2 表示 UserInfo 表)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">NSMutableArray *users = [[NSMutableArray alloc]init];</div><div class="line">[fmdb open];</div><div class="line"></div><div class="line">NSString *sql = @&quot;select distinct t2.userId,t2.realName,t2.sex,t2.avatarUrl,t2.basisWeight,t1.relevanceName,t1.puid from User t1 inner join UserInfo t2 on t1.userId = t2.userId where t1.puid = 103064210 and t1.status = 0&quot;;</div><div class="line">FMResultSet *rest = [fmdb executeQuery:sql,userId,@&quot;0&quot;];</div><div class="line">while ([rest next]) &#123;</div><div class="line">    [users addObject:[rest resultDictionary]];</div><div class="line">&#125;</div><div class="line">[rest close];</div><div class="line">[fmdb close];</div></pre></td></tr></table></figure>
+<p>查询结果:</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/10991770-1803172f6b29bbdd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="查询结果.png"></p>
+<blockquote>
+<h5 id="八-参考及引用文献"><a href="#八-参考及引用文献" class="headerlink" title="八.参考及引用文献:"></a>八.参考及引用文献:</h5></blockquote>
+<ul>
+<li><a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2Fccgus%2Ffmdb" target="_blank" rel="external">FMDB官方文档</a></li>
+<li><a href="https://link.jianshu.com?t=http%3A%2F%2Fwww.w3school.com.cn%2Fsql%2Fsql_intro.asp" target="_blank" rel="external">W3School</a></li>
+<li><a href="https://link.jianshu.com?t=http%3A%2F%2Fccgus.github.io%2Ffmdb%2Fhtml%2F" target="_blank" rel="external">FMDB Reference</a></li>
+<li><a href="https://link.jianshu.com?t=http%3A%2F%2Fblog.devtang.com%2F2012%2F04%2F22%2Fuse-fmdb%2F" target="_blank" rel="external">在iOS开发中使用FMDB</a></li>
+<li><a href="https://www.jianshu.com/p/82b2b06e3172#" target="_blank" rel="external">iOS学习笔记17-FMDB你好！</a></li>
+<li><a href="https://link.jianshu.com?t=https%3A%2F%2Fblog.6ag.cn%2F1227.html" target="_blank" rel="external">iOS数据库操作中的常见SQL语句</a></li>
+<li><a href="https://link.jianshu.com?t=http%3A%2F%2Fwww.ios122.com%2F2015%2F09%2Ffmdb%2F" target="_blank" rel="external">FMDB–更友好地操作SQLite数据库</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Bonway WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Bonway Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS源码解析/"  <i class="fa fa-tag"></i> iOS源码解析</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/11/iOS SDWebImage源码解析（进阶）/" rel="next" title="iOS SDWebImage源码解析（进阶）">
+                <i class="fa fa-chevron-left"></i> iOS SDWebImage源码解析（进阶）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/21/iOS搭建Log日志系统/" rel="prev" title="iOS iOS搭建Log日志系统">
+                iOS iOS搭建Log日志系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/mine.png"
+               alt="Bonway" />
+          <p class="site-author-name" itemprop="name">Bonway</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/your-user-name" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="421817275@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="421817275" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#TopicList"><span class="nav-number">1.</span> <span class="nav-text">TopicList</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#一-FMDB-简介"><span class="nav-number">1.1.</span> <span class="nav-text">一.FMDB 简介</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二-FMDB-使用说明"><span class="nav-number">1.2.</span> <span class="nav-text">二.FMDB 使用说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#三-FMDB-创建及使用方法"><span class="nav-number">1.3.</span> <span class="nav-text">三.FMDB 创建及使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-创建数据库"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.创建数据库</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-打开数据库"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.打开数据库</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-执行更新操作"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.执行更新操作</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-执行查询操作"><span class="nav-number">1.3.4.</span> <span class="nav-text">4.执行查询操作</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-关闭数据库"><span class="nav-number">1.3.5.</span> <span class="nav-text">5.关闭数据库</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#四-FMDatabaseQueue的使用"><span class="nav-number">1.4.</span> <span class="nav-text">四.FMDatabaseQueue的使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#五-事务"><span class="nav-number">1.5.</span> <span class="nav-text">五.事务</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-附相关参数说明"><span class="nav-number">2.</span> <span class="nav-text">六.附相关参数说明:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#七-附-iOS数据库操作中常见的-SQL-语句"><span class="nav-number">2.1.</span> <span class="nav-text">七. 附 iOS数据库操作中常见的 SQL 语句</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-创建表格-CREATE-TABLE-语句用于创建数据库中的表"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.创建表格 (CREATE TABLE 语句用于创建数据库中的表)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-删除表格-DROP-TABLE-语句用于删除表"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.删除表格 (DROP TABLE 语句用于删除表)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-增-INSERT-INTO-语句用于向表格中插入新的行"><span class="nav-number">2.1.3.</span> <span class="nav-text">3.增 (INSERT INTO 语句用于向表格中插入新的行)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-删-DELETE-语句用于删除表中的行"><span class="nav-number">2.1.4.</span> <span class="nav-text">4.删 (DELETE 语句用于删除表中的行)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-改-UPDATE-语句用于修改表中的数据"><span class="nav-number">2.1.5.</span> <span class="nav-text">5.改 (UPDATE 语句用于修改表中的数据)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-查-SELECT-语句用于从表中查询并选取数据"><span class="nav-number">2.1.6.</span> <span class="nav-text">6.查 (SELECT 语句用于从表中查询并选取数据)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-后续补充"><span class="nav-number">2.2.</span> <span class="nav-text">8. 后续补充</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-表间关联查询语句"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. 表间关联查询语句</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#八-参考及引用文献"><span class="nav-number">2.3.</span> <span class="nav-text">八.参考及引用文献:</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2018</span>
+  
+  <span class="author" itemprop="copyrightHolder">Bonway</span>
+</div>
+
+
+
+Powered by <a href="http://linqipuzi.xyz/" target="_blank">Bonway</a>
+·浙ICP备18006992号 <a href="http://linqipuzi.xyz/" target="_blank"></a>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共字</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytrMgNxf';
+      var conf = 'bc060e5ba4249731b1c8b8e92d032584';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("vSIGWaVuClR8KRBO8C13a5k0-gzGzoHsz", "snxTUFWhWzp3gYHYljaCIjAh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
+
