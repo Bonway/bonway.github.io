@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #f0f0f0; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS面试," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Bonway" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="随着iOS11和xcode9刚开始正式发布，小编也迫不及待的更新了xcode9，手机也顺利更新到iOS，也终于见到iPhone X 的真面不，看着齐刘海的样式，小编心里淡淡的忧伤，怎么适配，如何快速适配到项目中，成了一个蛋疼的问题。
+文章讲解点：
+
+1.首先看一下iPhone X的模拟器样式吧
+2.iPhone X的设计图
+3.启动页的适配
+4.刷新框架的适配iOS11
+5.纯代码的宽高比适配
+6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS11和iPhone-X的适配">
+<meta property="og:url" content="http://yoursite.com/2017/09/20/iOS11和iPhone-X的适配/index.html">
+<meta property="og:site_name" content="Bonway">
+<meta property="og:description" content="随着iOS11和xcode9刚开始正式发布，小编也迫不及待的更新了xcode9，手机也顺利更新到iOS，也终于见到iPhone X 的真面不，看着齐刘海的样式，小编心里淡淡的忧伤，怎么适配，如何快速适配到项目中，成了一个蛋疼的问题。
+文章讲解点：
+
+1.首先看一下iPhone X的模拟器样式吧
+2.iPhone X的设计图
+3.启动页的适配
+4.刷新框架的适配iOS11
+5.纯代码的宽高比适配
+6">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-700d6d6094147b96.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-b44a523d9b8dfed5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-7ea3ce30b06f07cc.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-ddff016bbdbac129.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-1e8f771bd38026c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-562f975f72ef2bf7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-781fb5fde9350870.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-4a91be994b74f978.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-b9ac816836c52e2b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-e0f3ab59971a10ec.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-9c27b45019c6ff68.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-c7c6d54eb49da632.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-7544606889be48f9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-7cde036725b5cbbe.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-0370fdc79a541323.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-c185de29faae346d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-a5a54749796c658c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-5f8d8a90bd8be4b4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-59c4da32dc0b8bfd.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-12f1111b1382c17d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10991770-39fbb941db45c22c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-03-18T01:53:19.494Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS11和iPhone-X的适配">
+<meta name="twitter:description" content="随着iOS11和xcode9刚开始正式发布，小编也迫不及待的更新了xcode9，手机也顺利更新到iOS，也终于见到iPhone X 的真面不，看着齐刘海的样式，小编心里淡淡的忧伤，怎么适配，如何快速适配到项目中，成了一个蛋疼的问题。
+文章讲解点：
+
+1.首先看一下iPhone X的模拟器样式吧
+2.iPhone X的设计图
+3.启动页的适配
+4.刷新框架的适配iOS11
+5.纯代码的宽高比适配
+6">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/10991770-700d6d6094147b96.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/20/iOS11和iPhone-X的适配/"/>
+
+
+
+
+
+  <title>iOS11和iPhone-X的适配 | Bonway</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?da99a021876cb72e63bbf0f27d367af7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="http://linqipuzi.xyz"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bonway</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/20/iOS11和iPhone-X的适配/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bonway">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mine.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bonway">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">iOS11和iPhone-X的适配</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T15:31:29+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/09/20/iOS11和iPhone-X的适配/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/09/20/iOS11和iPhone-X的适配/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/09/20/iOS11和iPhone-X的适配/" class="leancloud_visitors" data-flag-title="iOS11和iPhone-X的适配">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>随着iOS11和xcode9刚开始正式发布，小编也迫不及待的更新了xcode9，手机也顺利更新到iOS，也终于见到iPhone X 的真面不，看着<code>齐刘海</code>的样式，小编心里淡淡的忧伤，怎么适配，如何快速适配到项目中，成了一个蛋疼的问题。</p>
+<p>文章讲解点：</p>
+<ul>
+<li>1.首先看一下iPhone X的模拟器样式吧</li>
+<li>2.iPhone X的设计图</li>
+<li>3.启动页的适配</li>
+<li>4.刷新框架的适配iOS11</li>
+<li>5.纯代码的宽高比适配</li>
+<li>6.纯代码适配齐刘海</li>
+<li>7.纯代码适配iPhone X脚底</li>
+<li>8.xib和SB适配</li>
+<li>9,适配iOS 11 列表的册数删除</li>
+<li>10.tableView的头部试图和尾部试图</li>
+<li>11.UIBarButtonItem的适配</li>
+<li>12.无线真机测试</li>
+<li>13.真机地图适配</li>
+</ul>
+<h4 id="1-首先看一下iPhone-X的模拟器样式吧"><a href="#1-首先看一下iPhone-X的模拟器样式吧" class="headerlink" title="1.首先看一下iPhone X的模拟器样式吧"></a>1.首先看一下iPhone X的模拟器样式吧</h4><p><img src="https://upload-images.jianshu.io/upload_images/10991770-700d6d6094147b96.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iPhone X"></p>
+<p><code>xcode 9 模拟器都带一个套套，像我这种强迫症看着淡淡的忧伤，没办法直接干掉算了</code><br><code>如果看着大小在电脑上面不合适，就把鼠标放到四个角的时候，可以随便拖大小的</code></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10991770-b44a523d9b8dfed5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="更改模拟器外观样式.png"></p>
+<h4 id="2-iPhone-X的设计图"><a href="#2-iPhone-X的设计图" class="headerlink" title="2.iPhone X的设计图"></a>2.iPhone X的设计图</h4><blockquote>
+<p>我们可以看出，所有的边框都是圆角，也是很符合苹果的设计规则，扁平化更凸现出来。有图我可能可以看出，iPhone X的状态栏由原来的<code>20</code>变更为现在的<code>44</code>,来凸现<code>齐刘海</code>，就是这个状态栏的改变变成了多少<code>程序🐶</code>噩梦，同样也是小编，<strong>后面小遍会介绍怎么适配</strong><br><img src="https://upload-images.jianshu.io/upload_images/10991770-7ea3ce30b06f07cc.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="网络图，感谢提供者.png"></p>
+</blockquote>
+<h4 id="3-启动页的适配"><a href="#3-启动页的适配" class="headerlink" title="3.启动页的适配"></a>3.启动页的适配</h4><blockquote>
+<p>iPhone X采用的和iPhone 6p一样的<code>@3x</code>的图，而不是传说中的<code>@4x</code>图，不然设计<code>妹妹</code>真的哭晕在厕所了，适配起来还是比较好弄的，但是iPhone X 的屏幕平尺变为<code>1125 * 2436</code>，如果你是用的是<code>LaunchImage</code>来管理启动页，那就可以找设计<code>妹子</code>给你弄一张图出来了（晚上一起吃饭不，那就看你本事了）。如果你使用的是<code>LaunchScreen</code>来适配的启动页，听我一句也去问问设计妹子吧，毕竟iPhone X的<code>高宽比（iPhone X采用了iPhone 8的宽，却比iPhone 8p都要高）</code>发生了变化，拉伸了设计<code>妹子</code>的图，会给你拼命的，<br>说的那么多废话，就一点是重要的<strong>iPhone X 的屏幕平尺变为<code>1125 * 2436</code></strong></p>
+</blockquote>
+<h4 id="4-刷新框架的适配iOS11"><a href="#4-刷新框架的适配iOS11" class="headerlink" title="4.刷新框架的适配iOS11"></a>4.刷新框架的适配iOS11</h4><blockquote>
+<p>如果你使用了<code>MJRefresh</code>等刷新，并且你还隐藏了导航，那么你就会出现一下情况</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/10991770-ddff016bbdbac129.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这不是我想要的，产品会打我的"></p>
+<blockquote>
+<p>造成这个原因就是：<code>iOS 11</code>上面废除了<code>automaticallyAdjustsScrollViewInsets</code>这个属性的使用，妹妹的搞什么，确实使用了<code>UIScrollView&#39;s contentInsetAdjustmentBehavior</code>来替代，<a href="https://link.jianshu.com?t=https%3A%2F%2Fwww.lee1994.com%2Fguan-yu-iphone%2F" target="_blank" rel="external">详细介绍</a>(本篇七秒只做开发中实际适配，不详细解答为何这样适配)，如何适配？粘上下面代码即可</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">  if (@available(iOS 11.0, *)) &#123;</div><div class="line">    self.home_collectionView.contentInsetAdjustmentBehavior = UIApplicationBackgroundFetchIntervalNever;</div><div class="line">&#125; else &#123;</div><div class="line">    self.automaticallyAdjustsScrollViewInsets = false;</div><div class="line">    // Fallback on earlier versions</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>但是看到每个地方倒要<code>if else</code>,确实不舒服，七秒斗胆写了一个宏，仅供参考</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/// 第一个参数是当下的控制器适配iOS11 一下的，第二个参数表示scrollview或子类</div><div class="line">#define AdjustsScrollViewInsetNever(controller,view) if(@available(iOS 11.0, *)) &#123;view.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;&#125; else if([controller isKindOfClass:[UIViewController class]]) &#123;controller.automaticallyAdjustsScrollViewInsets = false;&#125;</div></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/10991770-1e8f771bd38026c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="适配后的界面，舒服多了"></p>
+<h4 id="5-纯代码的宽高比适配"><a href="#5-纯代码的宽高比适配" class="headerlink" title="5.纯代码的宽高比适配"></a>5.纯代码的宽高比适配</h4><blockquote>
+<p>众所周知<code>iPhone X</code>的高宽比和以前的<code>iPhone</code>机型有所改变，那么我们纯代码适配，都是使用的系数进行适配，如：<code>CGRectMake(20*kWJWidthCoefficient, 30*kWJHeightCoefficient, 100*kWJWidthCoefficient, 40*kWJHeightCoefficient)</code>这样就可以适配使用的机型了，但是偏偏<code>iPhone X</code>上面宽度没有变，高度却增加不少，没办法只能在<code>kWJHeightCoefficient</code>系数来做文章吧，七秒没办法只能在写个宏了不然，我的一个个的写啊，累啊<br><strong>说了那么多废话，其实就是<code>iPhone X的高宽比和iPhone 8的一样就OK</code>，但是<code>iPhone X</code>确实用的是<code>@3x</code>的图</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/// 高度系数 812.0 是iPhoneX的高度尺寸，667.0表示是iPhone 8 的高度，如果你觉的它会变化，那我也很无奈</div><div class="line">#define kWJHeightCoefficient (kWJScreenHeight == 812.0 ? 667.0/667.0 : kWJScreenHeight/667.0)</div></pre></td></tr></table></figure>
+<h4 id="6-纯代码适配齐刘海"><a href="#6-纯代码适配齐刘海" class="headerlink" title="6.纯代码适配齐刘海"></a>6.纯代码适配<code>齐刘海</code></h4><blockquote>
+<p>众所周知，<code>导航的高度为64</code>，在哪个手机上面都是不变的,<code>iPhone X</code>没出来之前是对的，随便写<code>64</code>,<code>iPhone X</code>出来后，大家都傻眼了，导航栏高度变了有可能为<code>88</code>,傻眼了吧，如果你纯码写的都是<code>64</code>效果如下</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/10991770-562f975f72ef2bf7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="写死64效果"></p>
+<blockquote>
+<p>这就是自己写代码的不规范造成的，曾经有个<code>程序员</code>给说过：不要在代码里面看到<code>重复多次的数字、字符串等</code>的使用，如果重复多次就要抽取出来使用常量来表示，如果当时听他的话，能出现这个效果，吓的小遍立马改为（现在已经哭晕厕所）<br><strong>重点 ：</strong>别直接写<code>64</code>了，也别直接写<code>88</code>,写宏吧<br><strong>重点：</strong>别直接写<code>64</code>了，也别直接写<code>88</code>,写宏吧<br><strong>重点：</strong>别直接写<code>64</code>了，也别直接写<code>88</code>,写宏吧</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#define SafeAreaTopHeight (kWJScreenHeight == 812.0 ? 88 : 64)</div></pre></td></tr></table></figure>
+<h4 id="7-纯代码适配iPhone-X脚底"><a href="#7-纯代码适配iPhone-X脚底" class="headerlink" title="7.纯代码适配iPhone X脚底"></a>7.纯代码适配<code>iPhone X</code>脚底</h4><blockquote>
+<p>脚底到底要不要适配，小编也纠结了一会，默默告诉你，还是问你<code>产品吧</code>，谁让他是老大呢，小编循序的原则就是:<code>列表页面不去适配，底部有按钮的界面要适配</code>，从模拟器自带的上面也是看到这种效果<br><img src="https://upload-images.jianshu.io/upload_images/10991770-781fb5fde9350870.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="底部角的适配"></p>
+<p>其实底部角圆角的距离是<code>34</code>,我们可以在任意界面打印<code>安全试图</code>就可以找到,在<code>viewSafeAreaInsetsDidChange</code>方法里面打印<code>NSLog(@&quot;%@&quot;,NSStringFromUIEdgeInsets(self.view.safeAreaInsets));</code>即可知道<code>安全区域</code>的边界<br><strong>注意</strong>：<br>1.介绍<code>viewSafeAreaInsetsDidChange</code>方法系统调用或者你设置<code>控制器</code>的<code>additionalSafeAreaInsets安全区域边界</code><br>2.顺序<code>viewSafeAreaInsetsDidChange</code>调用顺序实在<code>viewWillAppear</code>之后，在<code>viewWillLayoutSubvies</code>之前调用<br><strong>重点 ：</strong>设置你底部的按钮按钮底部距离底部<code>34</code>即可，但是不要让上面的试图的高度盖住底部按钮<br><strong>重点 ：</strong>设置你底部的按钮按钮底部距离底部<code>34</code>即可<br><strong>重点 ：</strong>设置你底部的按钮按钮底部距离底部<code>34</code>即可</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/// 底部宏，吃一见长一智吧，别写数字了</div><div class="line">#define SafeAreaBottomHeight (kWJScreenHeight == 812.0 ? 34 : 0)</div></pre></td></tr></table></figure>
+<h4 id="8-xib和SB适配"><a href="#8-xib和SB适配" class="headerlink" title="8.xib和SB适配"></a>8.xib和SB适配</h4><blockquote>
+<p>介绍之前，我打算介绍一下<code>系统的安全区域</code>的范围</p>
+</blockquote>
+<h6 id="8-1带有tabbar和navbar的安全区域"><a href="#8-1带有tabbar和navbar的安全区域" class="headerlink" title="8.1带有tabbar和navbar的安全区域"></a>8.1带有tabbar和navbar的安全区域</h6><p><img src="https://upload-images.jianshu.io/upload_images/10991770-4a91be994b74f978.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="带有tabbar和navbar的安全区域"></p>
+<h6 id="8-2带有tabbar和隐藏navbar的安全区域"><a href="#8-2带有tabbar和隐藏navbar的安全区域" class="headerlink" title="8.2带有tabbar和隐藏navbar的安全区域"></a>8.2带有tabbar和隐藏navbar的安全区域</h6><p><img src="https://upload-images.jianshu.io/upload_images/10991770-b9ac816836c52e2b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="带有tabbar和隐藏navbar的安全区域"></p>
+<blockquote>
+<p><strong>重点：</strong>安全区域就是<code>整个屏幕--导航栏--状态栏--tabbar</code>（自己设定的安全区域除外）</p>
+<p><code>xib</code>的适配<code>齐刘海</code>和<code>圆角</code>不会让我一个一个约束去拖吧，如果你们项目要求适配<code>iOS 9</code>一下的，小编还没找到好方法，就该一个一个好好拖了，如果你们不要求适配<code>iOS 9</code>一下的，那么你就有福音了，比代码简单太多了，只需要给<code>view</code>打开<code>安全区域</code>即可。</p>
+</blockquote>
+<h6 id="8-3打开view的安全区域"><a href="#8-3打开view的安全区域" class="headerlink" title="8.3打开view的安全区域"></a>8.3打开view的安全区域</h6><p><img src="https://upload-images.jianshu.io/upload_images/10991770-e0f3ab59971a10ec.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="打开view的安全区域"><br><img src="https://upload-images.jianshu.io/upload_images/10991770-9c27b45019c6ff68.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="打开view的安全区域"></p>
+<h6 id="8-4设置顶部约束"><a href="#8-4设置顶部约束" class="headerlink" title="8.4设置顶部约束"></a>8.4设置顶部约束</h6><p>域顶部</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10991770-c7c6d54eb49da632.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="设置顶部约束是距离安全区域顶部"></p>
+<h6 id="8-5设置距离安全区域顶部距离"><a href="#8-5设置距离安全区域顶部距离" class="headerlink" title="8.5设置距离安全区域顶部距离"></a>8.5设置距离安全区域顶部距离</h6><p><img src="https://upload-images.jianshu.io/upload_images/10991770-7544606889be48f9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="设置距离安全区域顶部距离"></p>
+<h6 id="8-6比较"><a href="#8-6比较" class="headerlink" title="8.6比较"></a>8.6比较</h6><p><img src="https://upload-images.jianshu.io/upload_images/10991770-7cde036725b5cbbe.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="设置安全区域和没有设置比较"></p>
+<h4 id="9-适配iOS-11-列表的册数删除"><a href="#9-适配iOS-11-列表的册数删除" class="headerlink" title="9,适配iOS 11 列表的册数删除"></a>9,适配iOS 11 列表的册数删除</h4><blockquote>
+<p>在iOS8之后，苹果官方增加了UITableVIew的右滑操作接口，即新增了一个代理方法(tableView: editActionsForRowAtIndexPath:)和一个类(UITableViewRowAction)，代理方法返回的是一个数组，我们可以在这个代理方法中定义所需要的操作按钮(删除、置顶等)，这些按钮的类就是UITableViewRowAction。这个类只能定义按钮的显示文字、背景色、和按钮事件。并且返回数组的第一个元素在UITableViewCell的最右侧显示，最后一个元素在最左侧显示。从iOS 11开始有了一些改变，首先是可以给这些按钮添加图片了，然后是如果实现了以下两个iOS 11新增的代理方法，将会取代(tableView: editActionsForRowAtIndexPath:)代理方法：<br><strong>注意：</strong>看的有的文章如果在iOS11上面调用老的删除，会崩溃，小编测试没有遇到，还是请大家趁早替换适配吧</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- (nullable UISwipeActionsConfiguration *)tableView:(UITableView *)tableView leadingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath</div><div class="line">func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -&gt; UISwipeActionsConfiguration?</div></pre></td></tr></table></figure>
+<h5 id="9-1-右滑和左滑调用"><a href="#9-1-右滑和左滑调用" class="headerlink" title="9.1,右滑和左滑调用"></a>9.1,右滑和左滑调用</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -&gt; UISwipeActionsConfiguration? &#123;</div><div class="line">    let action = UIContextualAction(style: .destructive, title: &quot;Delete&quot;) &#123; (action, view, handler) in</div><div class="line">        handler(true)</div><div class="line">    &#125;</div><div class="line">    let configuration = UISwipeActionsConfiguration(actions: [action])</div><div class="line">    return configuration</div><div class="line">&#125;</div><div class="line">   func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -&gt; UISwipeActionsConfiguration? &#123;</div><div class="line">    let action = UIContextualAction(style: .normal, title: &quot;Mark&quot;) &#123; (action, view, handler) in</div><div class="line">        handler(true)</div><div class="line">    &#125;</div><div class="line">    action.backgroundColor = UIColor.init(red: 254/255.0, green: 175/255.0, blue: 254/255.0, alpha: 1);</div><div class="line"></div><div class="line">    let configuration = UISwipeActionsConfiguration(actions: [action])</div><div class="line">    return configuration</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="10-tableView的头部试图和尾部试图"><a href="#10-tableView的头部试图和尾部试图" class="headerlink" title="10.tableView的头部试图和尾部试图"></a>10.tableView的头部试图和尾部试图</h4><blockquote>
+<p>在iOS11里面有时候在<code>tableView</code>的头部和尾部留白，因为苹果给滚动试图加进去了<code>self-sizeing</code>，开始计算逐步计算<code>contentSize</code>，默认如果不去实现<code>viewForHeaderInSection</code>就不会调用<code>heightForHeaderInSection</code>,尾部试图一样。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -&gt; UIView? &#123; &#125;</div><div class="line">func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -&gt; CGFloat &#123;   return 0.001 &#125;</div></pre></td></tr></table></figure></p>
+<p>如果你不想实现<code>viewForHeaderInSection</code>也不想留白，那么只需要你把<code>self-sizeing</code>自动估高关闭即可</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/// 自动关闭估算高度，不想估算那个，就设置那个即可</div><div class="line">self.tableView.estimatedRowHeight = 0;</div><div class="line">self.tableView.estimatedSectionHeaderHeight = 0;</div><div class="line">self.tableView.estimatedSectionFooterHeight = 0;</div></pre></td></tr></table></figure>
+<h4 id="11-UIBarButtonItem的适配"><a href="#11-UIBarButtonItem的适配" class="headerlink" title="11.UIBarButtonItem的适配"></a>11.UIBarButtonItem的适配</h4><p><img src="https://upload-images.jianshu.io/upload_images/10991770-0370fdc79a541323.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="UIBarButtonItem错位效果"></p>
+<blockquote>
+<p>在iOS 11 里面使用 <code>CustomView</code>创建的<code>item</code>造成<code>frame</code>错乱以及设置边距<code>item.width = -20</code>等失效问题，归根结底是因为<code>苹果更改了iOS11上面uinavigationBar的结构</code><br><img src="https://upload-images.jianshu.io/upload_images/10991770-c185de29faae346d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iOS 11以前的navigationBar"></p>
+<p>添加的<code>right和left</code>直接添加到<code>navigationBar上面</code>，并且使用的是frame布局的</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/10991770-a5a54749796c658c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iOS 11 navigationBar结构图"></p>
+<blockquote>
+<p>有图我们可以看到， 添加的<code>right和left</code>的<code>UIBarButtonItem</code>并不是直接添加到<code>nagitionBar</code>上面。而是在外面嵌套了一个<code>uibuttonBarStackView</code>,而<code>StackView</code>并不是使用的<code>frame</code>，而是用的约束来布局，所以必须得用 AutoLayout 了！</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/// 适配iOS11 UIBarButtonItem 添加自定义布局</div><div class="line">if (@available(iOS 9.0,*)) &#123; /// 强迫症的朋友这里也是可以写成11.0</div><div class="line">   [backbtn.widthAnchor constraintEqualToConstant:size.width].active = true;</div><div class="line">   [backbtn.heightAnchor constraintEqualToConstant:size.height].active = true;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/10991770-5f8d8a90bd8be4b4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iOS11里面正确效果"></p>
+<h4 id="12-无线真机测试"><a href="#12-无线真机测试" class="headerlink" title="12.无线真机测试"></a>12.无线真机测试</h4><blockquote>
+<p>这应该也是<code>xcode 9</code>的一个亮点吧，但是速度真的不是很干恭维的。<strong>注意</strong>手机和电脑必须在同一个局域网内<br>首先使用手机连接xcode之后，打开<code>window-&gt;Devices and Simulator-&gt;勾选Show as run destination和Connect via network</code>,这样就可以无线测试了，以后妈妈再也不用担心忘记带线了<br><img src="https://upload-images.jianshu.io/upload_images/10991770-59c4da32dc0b8bfd.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="无线测试1.png
+"><br><img src="https://upload-images.jianshu.io/upload_images/10991770-12f1111b1382c17d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="无线测试2"></p>
+</blockquote>
+<h4 id="13-iOS11-真机地图"><a href="#13-iOS11-真机地图" class="headerlink" title="13.iOS11 真机地图"></a>13.iOS11 真机地图</h4><blockquote>
+<p>在iOS11地图适配，在iOS11中，如果使用到地图，我们就需要在<code>info</code>,里面添加<code>NSLocationAlwaysAndWhenInUseUsageDescription</code> 和<code>NSLocationWhenInUseUsageDescription</code>才可以在<code>ios11</code>里面正常调出地图<br><img src="https://upload-images.jianshu.io/upload_images/10991770-39fbb941db45c22c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iOS11，地图权限"></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Bonway WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Bonway Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS面试/"  <i class="fa fa-tag"></i> iOS面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/20/iOS面试题：阿里-P6一面-参考思路/" rel="next" title="iOS面试题：阿里-P6一面及参考思路">
+                <i class="fa fa-chevron-left"></i> iOS面试题：阿里-P6一面及参考思路
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/20/iPhone-X主流APP适配情况/" rel="prev" title="iPhone-X主流APP适配情况">
+                iPhone-X主流APP适配情况 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/mine.png"
+               alt="Bonway" />
+          <p class="site-author-name" itemprop="name">Bonway</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/your-user-name" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="421817275@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="421817275" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-首先看一下iPhone-X的模拟器样式吧"><span class="nav-number">1.</span> <span class="nav-text">1.首先看一下iPhone X的模拟器样式吧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-iPhone-X的设计图"><span class="nav-number">2.</span> <span class="nav-text">2.iPhone X的设计图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-启动页的适配"><span class="nav-number">3.</span> <span class="nav-text">3.启动页的适配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-刷新框架的适配iOS11"><span class="nav-number">4.</span> <span class="nav-text">4.刷新框架的适配iOS11</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-纯代码的宽高比适配"><span class="nav-number">5.</span> <span class="nav-text">5.纯代码的宽高比适配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-纯代码适配齐刘海"><span class="nav-number">6.</span> <span class="nav-text">6.纯代码适配齐刘海</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-纯代码适配iPhone-X脚底"><span class="nav-number">7.</span> <span class="nav-text">7.纯代码适配iPhone X脚底</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-xib和SB适配"><span class="nav-number">8.</span> <span class="nav-text">8.xib和SB适配</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#8-1带有tabbar和navbar的安全区域"><span class="nav-number">8.0.1.</span> <span class="nav-text">8.1带有tabbar和navbar的安全区域</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#8-2带有tabbar和隐藏navbar的安全区域"><span class="nav-number">8.0.2.</span> <span class="nav-text">8.2带有tabbar和隐藏navbar的安全区域</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#8-3打开view的安全区域"><span class="nav-number">8.0.3.</span> <span class="nav-text">8.3打开view的安全区域</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#8-4设置顶部约束"><span class="nav-number">8.0.4.</span> <span class="nav-text">8.4设置顶部约束</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#8-5设置距离安全区域顶部距离"><span class="nav-number">8.0.5.</span> <span class="nav-text">8.5设置距离安全区域顶部距离</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#8-6比较"><span class="nav-number">8.0.6.</span> <span class="nav-text">8.6比较</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-适配iOS-11-列表的册数删除"><span class="nav-number">9.</span> <span class="nav-text">9,适配iOS 11 列表的册数删除</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#9-1-右滑和左滑调用"><span class="nav-number">9.1.</span> <span class="nav-text">9.1,右滑和左滑调用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-tableView的头部试图和尾部试图"><span class="nav-number">10.</span> <span class="nav-text">10.tableView的头部试图和尾部试图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-UIBarButtonItem的适配"><span class="nav-number">11.</span> <span class="nav-text">11.UIBarButtonItem的适配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-无线真机测试"><span class="nav-number">12.</span> <span class="nav-text">12.无线真机测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-iOS11-真机地图"><span class="nav-number">13.</span> <span class="nav-text">13.iOS11 真机地图</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2018</span>
+  
+  <span class="author" itemprop="copyrightHolder">Bonway</span>
+</div>
+
+
+
+Powered by <a href="http://linqipuzi.xyz/" target="_blank">Bonway</a>
+·浙ICP备18006992号 <a href="http://linqipuzi.xyz/" target="_blank"></a>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共字</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytrMgNxf';
+      var conf = 'bc060e5ba4249731b1c8b8e92d032584';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("vSIGWaVuClR8KRBO8C13a5k0-gzGzoHsz", "snxTUFWhWzp3gYHYljaCIjAh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
+
