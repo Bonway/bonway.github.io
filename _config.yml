@@ -100,11 +100,7 @@ theme: anatole
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repo: https://github.com/Bonway/bonway.github.io.git 
-  branch: 'master'    # 决定上传到哪个节点下，这里默认选择 'main'
-  token: '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'           # 可不填
+         # 可不填
 
 archive_generator:
   per_page: 0  
