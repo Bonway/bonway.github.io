@@ -1,0 +1,3 @@
+[submodule "themes/jane"]
+	path = themes/jane
+	url = https://github.com/hejianxian/hexo-theme-jane.git
