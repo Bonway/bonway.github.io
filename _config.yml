@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
-keywords:
-author: John Doe
-language: en
+title: Blog
+subtitle: 'Blog,Flutter,iOS,Android'
+description: '哈哈哈。。。'
+keywords: Blog,Flutter,iOS,Android
+author: Bonway_Huang
+language: zh-cn
 # timezone: ''
 
 # URL
@@ -96,9 +96,47 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: jane
+theme: anatole
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/Bonway/bonway.github.io.git 
+  branch: 'master'    # 决定上传到哪个节点下，这里默认选择 'main'
+  token: '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'           # 可不填
+
+archive_generator:
+  per_page: 0  
+  yearly: false
+  monthly: false
+  daily: false
+
+# 站点侧边栏底部
+footbar:
+  # 本意是用作描述Copyright的，不过你也可以改成
+  copyright: 全站CC-BY-SA-3.0
+  # 对于中国用户，如果你有网站备案：
+  beian: 
+  gongan: 
+
+
+# 社交链接
+# 你可以去 social_links.pug 增加更多的
+github: https://github.com/Lhcfl
+mail: yourname@example.com
+zhihu: 
+QQ: 
+twitter:
+instagram:
+rss:
+facebook:
+weibo:
+
+# 导航栏设置
+menu:
+  Home: /
+  Archives: /archives
+  Tags: /tags
+  About: /about
+  Links: /links
