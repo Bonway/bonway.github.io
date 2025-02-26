@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>fadfds</title>
+    <url>/2025/01/16/fadfds/</url>
+    <content><![CDATA[<h1 id="VSCode-中的-tasks-josn-配置使用"><a href="#VSCode-中的-tasks-josn-配置使用" class="headerlink" title="VSCode 中的 tasks.josn 配置使用"></a>VSCode 中的 tasks.josn 配置使用</h1><p>tasks.json 是 Visual Studio Code (VS Code) 中的一种配置文件，用于定义和管理任务自动化。通过它可以实现编译、构建、测试、运行脚本等任务，提升开发效率。以下是使用 tasks.json 的完整指南：</p>
+<hr>
+<h2 id="1-tasks-json-的位置"><a href="#1-tasks-json-的位置" class="headerlink" title="1. tasks.json 的位置"></a>1. tasks.json 的位置</h2><p>tasks.json 位于工作区的 .vscode 文件夹内。如果 .vscode&#x2F;tasks.json 文件不存在，可以通过以下步骤创建：</p>
+<ol>
+<li>打开命令面板（Ctrl+Shift+P 或 Cmd+Shift+P）。</li>
+<li>输入 Tasks: Configure Task，然后回车。</li>
+<li>选择 Create tasks.json file from template。</li>
+<li>选择一个模板，例如 Others。</li>
+<li>VS Code 会自动生成 .vscode&#x2F;tasks.json。</li>
+</ol>
+<h2 id="2-tasks-json-的结构"><a href="#2-tasks-json-的结构" class="headerlink" title="2. tasks.json 的结构"></a>2. tasks.json 的结构</h2><p>以下是一个典型的 tasks.json 配置文件结构：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;tasks&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Run Python Script&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;shell&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;flutter run&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;script.py&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;problemMatcher&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;group&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;build&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;isDefault&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><strong>字段解析</strong></p>
+<ul>
+<li>version: 当前版本是 2.0.0，必须包含。</li>
+<li>tasks: 包含任务的数组，每个任务是一个对象。</li>
+<li>label: 任务的名称，用于在任务列表中标识。</li>
+<li>type: 指定任务类型，可为 shell（默认）或 process。</li>
+<li>command: 要执行的命令或脚本。</li>
+<li>args: 传递给命令的参数数组。</li>
+<li>problemMatcher: 用于解析构建输出中的问题（例如错误和警告）。</li>
+<li>group: 定义任务的分组。常见值：</li>
+<li>“build”: 构建任务。</li>
+<li>“test”: 测试任务。</li>
+<li>isDefault: 如果为 true，表示这是默认任务。</li>
+</ul>
+]]></content>
+  </entry>
+</search>
